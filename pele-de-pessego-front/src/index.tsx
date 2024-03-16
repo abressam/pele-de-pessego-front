@@ -4,13 +4,29 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Languages // 
+import {IntlProvider} from 'react-intl';
+import Portuguese from './lang/pt.json'
+import English from './lang/en-us.json'
+
+const userLanguage  = navigator.language || 'pt';
+
+let lang;
+if (userLanguage  === "pt") {
+   lang = Portuguese;
+} else {
+  lang = English;
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+      <IntlProvider locale={userLanguage } messages={lang}>
+        <App />
+      </IntlProvider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
