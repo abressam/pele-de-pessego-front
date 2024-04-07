@@ -10,8 +10,8 @@ export const ProductCounterWrapper = styled.div`
     }
 
     .product-price {
-        width: 350px;
         justify-content: space-between;
+        padding: 15px;
     }
 
     .counter {
