@@ -1,5 +1,6 @@
 {
     "ProductCard.type": "Protetor solar",
     "ProductCard.brand": "Fashion",
-    "ProductCard.price": "R$ 29,99"
+    "ProductCard.price": "R$ 29,99",
+    "ProductDescription.title": "Sobre"
 }
