@@ -5,7 +5,7 @@ import UserFormButton from './UserFormButton';
 
 describe('<UserFormButton />', () => {
   test('it should mount', () => {
-    render(<UserFormButton />);
+    render(<UserFormButton buttonText={''} />);
     
     const userFormButton = screen.getByTestId('UserFormButton');
 

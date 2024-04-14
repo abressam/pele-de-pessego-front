@@ -52,7 +52,9 @@ const UserForm: FC<UserFormProps> = () => (
         <p className='p'>Já tem conta?<a href="">Faça seu login aqui!</a></p>
       </div>
       <div className='div'>
-        <UserFormButton></UserFormButton>
+        <UserFormButton 
+          buttonText="Próximo"
+        />
       </div>
       </form>  
       </div>
