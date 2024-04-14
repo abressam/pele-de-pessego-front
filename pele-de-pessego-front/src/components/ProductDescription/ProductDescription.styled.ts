@@ -3,23 +3,23 @@ import styled from 'styled-components';
 export const ProductDescriptionWrapper = styled.div`
     background-color: white;
     width: 500px;
-    max-height: 250px;
+    max-height: 350px;
     padding: 15px;
 
     .description-title, .description-text {
-        font-family: "Montserrat", sans-serif;
-        color: black;
+        font-family: "DM Sans", sans-serif;
+        color: #616161;
     }
 
     .description-title {
         display: flex;
         justify-content: flex-start;
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 18px;
+        font-weight: 500;
     }
 
     .description-text {
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 400;
         text-align: justify;
     }

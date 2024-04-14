@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const ProductHeaderWrapper = styled.div`
-    font-family: "Montserrat", sans-serif;
+    font-family: "DM Sans", sans-serif;
 
     .header {
         width: 500px;
         display: flex;
         flex-direction: column;
-        text-align: left;
+        text-align: justify;
         padding: 15px;
     }
 
@@ -16,23 +16,22 @@ export const ProductHeaderWrapper = styled.div`
         flex-direction: row;
     }
 
-    .type, .name {
-        color: black;
+    .type, .brand {
+        color: #34513A;
+        font-size: 16px;       
     }
 
     .type {
-        font-size: 16px;
-        font-weight: 500;
+        font-weight: 400;
     }
 
     .name {
-        font-size: 20px;
-        font-weight: 700;
+        color: #B54E4A;
+        font-size: 18px;
+        font-weight: 400;
     }
 
     .brand {
-        color: #343a40;
-        font-size: 14px;
-        font-weight: 400;
+        font-weight: 700;
     }
 `;
