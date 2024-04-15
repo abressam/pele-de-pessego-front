@@ -7,7 +7,7 @@ const UserFormEmail: FC<UserFormEmailProps> = () => (
  <UserFormEmailWrapper data-testid="UserFormEmail">
     <div>
         <label>
-          Email:<br></br>
+          E-mail:<br></br>
         </label>
         <input
           type="text"
