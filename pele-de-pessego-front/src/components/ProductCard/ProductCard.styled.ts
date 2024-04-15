@@ -2,52 +2,42 @@ import styled from 'styled-components';
 
 
 export const ProductCardWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 10px;
-
     .custom-card-style {
-        width: 15rem;
-        height: 21rem;
+        width: 250px
+        height: 350px;
         box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
-        border-radius: 10px;
+        border-radius: 8px;
+        padding: 8px;
     }
 
     .custom-card-img {
-        width: 12rem;
-        height: auto;
-        background-color: #F4CFC7;
-        margin-top: 15px;
-        border-radius: 10px;
+        height: 200px;
     }
 
     .product-type, .product-brand, .product-price {
         margin: 5px 20px 0px 20px;
         text-align: left;
         padding: 3px;
-        font-family: "Montserrat", sans-serif;
+        color: #34513A;
+        font-family: "DM Sans", sans-serif;
     }
 
     .product-type {
-        font-size: 14px;
-        color: black;
-        font-weight: 500;
+        font-size: 18px;
+        font-weight: 700;
     }
 
     .product-brand {
-        font-size: 12px;
-        color: black;
-        font-weight: 300;
+        font-size: 14px;
+        font-weight: 700;
     }
 
     .product-price {
         font-size: 18px;
-        color: black;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-weight: 600;
+        font-weight: 700;
     }
 
     .custom-card {
