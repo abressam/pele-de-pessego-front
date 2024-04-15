@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const ProductCounterWrapper = styled.div`
+    background-color: white;
+
     .counter, button, .product-price {
         display: flex;
         flex-direction: row;

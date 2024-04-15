@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ProductButtonWrapper = styled.div`
     display: flex;
     justify-content: center;
+    background-color: white;
 
     Button {
         background-color: #B54E4A;
@@ -21,7 +22,7 @@ export const ProductButtonWrapper = styled.div`
         font-size: 16px;
         color: #F7E9DE;
         font-family: "DM Sans", sans-serif;
-        gap: 5px;
+        gap: 8px;
     }
 
     .icon-wrapper {

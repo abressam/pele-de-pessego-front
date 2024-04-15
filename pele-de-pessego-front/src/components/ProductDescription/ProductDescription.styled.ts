@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ProductDescriptionWrapper = styled.div`
     background-color: white;
-    width: 500px;
+    width: 550px;
     max-height: 350px;
     padding: 15px;
 
