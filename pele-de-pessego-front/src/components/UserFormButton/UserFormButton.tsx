@@ -8,7 +8,9 @@ interface UserFormButtonProps {
 
 const UserFormButton: FC<UserFormButtonProps> = ({buttonText}) => (
  <UserFormButtonWrapper data-testid="UserFormButton">
-    <button type="submit">{buttonText}</button>
+    <Button variant="primary" type="submit">
+      {buttonText}
+    </Button>
  </UserFormButtonWrapper>
 );
 

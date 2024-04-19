@@ -11,53 +11,30 @@ interface UserFormProps {}
 
 const UserForm: FC<UserFormProps> = () => (
  <UserFormWrapper data-testid="UserForm">
-  <div className='formulario'>
-    <form>
-      <div>
-        <label>
-          Nome Completo:<br></br>
-        </label>
-        <input
-          type="text"
-          name="nome"
-          id="nome"
-          required
-        />
-      </div>
-      <div>
-        <label>
-          CPF:<br></br>
-        </label>
-        <input
-          type="text"
-          name="cpf"
-          id="cpf"
-          required
-        />
-      </div>
-      <UserFormEmail></UserFormEmail>
-      <UserFormSenha></UserFormSenha>
-      <div>
-        <label>
-        Confirmar Senha:<br></br>
-        </label>
-        <input
-          type="password"
-          name="confirmarsenha"
-          id="confirmarsenha"
-          required
-        />
-      </div><br></br>
-      <div>
-        <p className='p'>Já tem conta?<a href="">Faça seu login aqui!</a></p>
-      </div>
-      <div className='div'>
-        <UserFormButton 
-          buttonText="Próximo"
-        />
-      </div>
-      </form>  
-      </div>
+  <Form className='formCadastro'>
+    <Form.Group controlId="nome">
+          <Form.Label className='label'>Nome Completo:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group>
+    <Form.Group controlId="cpf">
+          <Form.Label className='label'>CPF:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group>
+    <UserFormEmail></UserFormEmail>
+    <UserFormSenha></UserFormSenha>
+    <Form.Group controlId="confirmarsenha">
+          <Form.Label className='label'>Confirmar Senha:</Form.Label><br/>
+          <Form.Control type="password" required/>
+    </Form.Group>
+    <p className='p'>Já tem conta?<a href="">Faça seu login aqui!</a></p>
+    <div className='divbutton'>
+    <UserFormButton
+      buttonText='Próximo'
+    />
+    </div>
+    
+  </Form>
+  
  </UserFormWrapper>
 );
 

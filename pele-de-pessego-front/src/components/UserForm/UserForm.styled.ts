@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const UserFormWrapper = styled.div`
 
-    label{
+    .label{
         color: #B54E4A;
         font-size: 14px;
         font-family:DM Sans;
@@ -17,7 +17,7 @@ export const UserFormWrapper = styled.div`
         background-color:#F7E9DE;
         font-size:14px;
     }
-    .formulario{
+    .formCadastro{
         border-radius: 5px;
         background-color:#F7E9DE;
         padding: 20px;
@@ -35,7 +35,7 @@ export const UserFormWrapper = styled.div`
         color: #34513A;
       }
 
-    .div{
+    .divbutton{
         text-align: center;
     }
     button{

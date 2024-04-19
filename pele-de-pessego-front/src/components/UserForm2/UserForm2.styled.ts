@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const UserForm2Wrapper = styled.div`
-label{
+.label{
     color: #B54E4A;
     font-size: 14px;
     font-family:DM Sans;
@@ -16,12 +16,12 @@ input{
     background-color:#F7E9DE;
     font-size:14px;
 }
-.formulario{
+.formCadastro2{
     border-radius: 5px;
     background-color:#F7E9DE;
     padding: 20px;
     gap:16px;
-    text-align:left;
+    text-align:center;
 }
 .p{
     color: #34513A;
@@ -34,7 +34,7 @@ a:hover {
     color: #34513A;
   }
 
-.div{
+.divbutton{
     text-align: center;
 }
 
@@ -42,15 +42,13 @@ div{
     display: inline-block;
 }
 
-form{
-    text-align:center;
-}
 button{
     width: 150px;
     height: 35px;
     border-radius: 4px ;
     background-color: #B54E4A;
     color:#F7E9DE;
+    
 }
 
 button:hover {

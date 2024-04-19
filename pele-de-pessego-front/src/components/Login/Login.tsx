@@ -3,24 +3,25 @@ import { LoginWrapper } from './Login.styled';
 import UserFormEmail from '../UserFormEmail/UserFormEmail';
 import UserFormSenha from '../UserFormSenha/UserFormSenha';
 import UserFormButton from '../UserFormButton/UserFormButton';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => (
  <LoginWrapper data-testid="Login">
-   <form className='formulario'>
+ <Form className='formLogin'>
       <UserFormEmail></UserFormEmail>
       <UserFormSenha></UserFormSenha>
-      <br/>
-      <div>
-        <p className='p'>Ainda não tem conta?<a href="">Faça seu login aqui!</a></p>
-      </div><br/>
-      <div className='div'>
-        <UserFormButton 
-          buttonText="Entrar"
-        />
+      <p className='p'>Ainda não tem conta?<a href="">Cadastre-se aqui!</a></p>
+      <div className='divbutton'>
+      <UserFormButton
+        buttonText="Enviar"
+      />
       </div>
-   </form>
+      
+      
+    </Form>
  </LoginWrapper>
 );
 

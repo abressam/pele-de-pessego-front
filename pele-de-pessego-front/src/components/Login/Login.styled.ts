@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const LoginWrapper = styled.div`
 
-    .formulario{
+    .formLogin{
         min-height:150px;
         border-radius: 8px ;
         background-color: #34513A;
@@ -10,7 +10,7 @@ export const LoginWrapper = styled.div`
         gap:16px;
         text-align:left;
     }
-    label{
+    .label{
         color: white;
         font-size: 14px;
         font-family:DM Sans;
@@ -35,7 +35,7 @@ export const LoginWrapper = styled.div`
     a:hover {
         color: white;
       }
-      .div{
+      .divbutton{
         text-align: center;
     }
     button{
@@ -44,6 +44,7 @@ export const LoginWrapper = styled.div`
         border-radius: 4px ;
         background-color: white;
         color:#34513A;
+        text-align: center;
     }
     
     button:hover {

@@ -1,108 +1,52 @@
 import React, { FC } from 'react';
 import { UserForm2Wrapper } from './UserForm2.styled';
 import UserFormButton from '../UserFormButton/UserFormButton';
-
+import { Form, FormGroup } from 'react-bootstrap';
 
 interface UserForm2Props {}
 
 const UserForm2: FC<UserForm2Props> = () => (
  <UserForm2Wrapper data-testid="UserForm2">
-   <div className='formulario'>
-      <form>
-      <div>
-         <label>
-            Endereço:<br></br>
-         </label>
-         <input
-            type="text"
-            name="endereco"
-            id="endereco"
-            required
-         />
-         </div>&nbsp;
-         <div>
-         <label>
-            Numero:<br></br>
-         </label>
-         <input
-            type="text"
-            name="numero"
-            id="numero"
-            required
-         />
-         </div><br />
-         <div>
-         <label>
-            Complemento:<br></br>
-         </label>
-         <input
-            type="text"
-            name="complemento"
-            id="complemento"
-         />
-         </div>&nbsp;
-         <div>
-         <label>
-         CEP:<br></br>
-         </label>
-         <input
-            type="text"
-            name="cep"
-            id="cep"
-            required
-         />
-         </div><br/>
-         <div>
-         <label>
-         Cidade:<br></br>
-         </label>
-         <input
-            type="text"
-            name="cidade"
-            id="cidade"
-            required
-         />
-         </div>&nbsp;
-         <div>
-         <label>
-         Estado:<br></br>
-         </label>
-         <input
-            type="text"
-            name="estado"
-            id="estado"
-            required
-         />
-         </div><br/>
-         <div>
-         <label>
-         Bairro:<br></br>
-         </label>
-         <input
-            type="text"
-            name="bairro"
-            id="bairro"
-            required
-         />
-         </div>&nbsp;
-         <div>
-         <label>
-         Telefone:<br></br>
-         </label>
-         <input
-            type="text"
-            name="telefone"
-            id="telefone"
-            required
-         />
-         </div><br /><br/>
-         <div className='div'>
-         <UserFormButton 
-            buttonText="Cadastrar"
-         />
-         </div>
-      </form> 
-   </div>
+   <Form className='formCadastro2'>
+   <Form.Group controlId="endereco">
+          <Form.Label className='label'>Endereço:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group>&emsp;
+    <Form.Group controlId="numero">
+          <Form.Label className='label'>Numero:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group><br/>
+    <Form.Group controlId="complemento">
+          <Form.Label className='label'>Complemento:</Form.Label><br/>
+          <Form.Control type="text"/>
+    </Form.Group>&emsp;
+    <Form.Group controlId="cep">
+          <Form.Label className='label'>CEP:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group><br/>
+    <Form.Group controlId="cidade">
+          <Form.Label className='label'>Cidade:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group>&emsp;
+    <Form.Group controlId="estado">
+          <Form.Label className='label'>Estado:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group><br/>
+    <Form.Group controlId="bairro">
+          <Form.Label className='label'>Bairro:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group>&emsp;
+    <Form.Group controlId="telefone">
+          <Form.Label className='label'>Telefone:</Form.Label><br/>
+          <Form.Control type="text" required/>
+    </Form.Group><br/><br/>
+    <div className='divbutton'>
+    <UserFormButton 
+      buttonText='Cadastrar'
+    />
+    </div>
+    
+   </Form>
  </UserForm2Wrapper>
 );
 
