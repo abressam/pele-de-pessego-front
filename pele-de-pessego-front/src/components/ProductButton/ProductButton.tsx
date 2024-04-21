@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { MdOutlineShoppingBag } from "react-icons/md";
+import { IoBagHandleSharp } from "react-icons/io5";
 import Button from 'react-bootstrap/Button';
 import { FormattedMessage } from 'react-intl';
 import { ProductButtonWrapper } from './ProductButton.styled';
@@ -10,7 +10,9 @@ const ProductButton: FC<ProductButtonProps> = () => (
  <ProductButtonWrapper data-testid="ProductButton">
    <Button>
       <div className="items">
-      <MdOutlineShoppingBag />
+        <div className="icon-wrapper">
+          <IoBagHandleSharp />
+        </div>
       <FormattedMessage id="ProductButton.name" defaultMessage="Adicionar ao carrinho" />
       </div>
    </Button>

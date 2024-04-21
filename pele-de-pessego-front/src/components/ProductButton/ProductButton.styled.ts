@@ -1,25 +1,31 @@
 import styled from 'styled-components';
 
 export const ProductButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    background-color: white;
 
     Button {
-        background-color: #F6E3DC;
-        border: 1px solid #E5BFD6;
-        border-radius: 10px;
-        padding: 15px;
+        background-color: #B54E4A;
+        border-radius: 8px;
+        border: inherit;
         cursor: pointer;
-
     }
 
     .items {
         display: flex;
+        justify-content: center;
         align-items: center;
-        flex-direction: row;
-        width: 100px;
-        min-width: 70px;
-        justify-content: space-between;
-        font-weight: 500;
+        width: 164px;
+        height: 64px;
+        font-weight: 700;
         font-size: 16px;
-        font-family: "Montserrat", sans-serif;
+        color: #F7E9DE;
+        font-family: "DM Sans", sans-serif;
+        gap: 8px;
+    }
+
+    .icon-wrapper {
+        font-size: 24px;
     }
 `;

@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
 export const ProductCounterWrapper = styled.div`
+    background-color: white;
+
     .counter, button, .product-price {
         display: flex;
         flex-direction: row;
         color: black;
-        font-family: "Roboto", sans-serif;
+        font-family: "DM Sans", sans-serif;
         align-items: center;
     }
 
     .product-price {
         justify-content: space-between;
+        font-weight: 700;
+        font-size: 24px;
         padding: 15px;
     }
 
@@ -20,16 +24,15 @@ export const ProductCounterWrapper = styled.div`
     }
 
     button {
-        background-color: #F6E3DC;
-        font-weight: 500;
-        font-size: 16px;
-        border-radius: 10px;
-        border: 1px solid #E5BFD6;
+        background-color: inherit;
+        border: inherit;
         padding: 10px;
         cursor: pointer;
     }
 
-    #number {
-        font-size: 20px;
+    #number, #operator {
+        font-size: 24px;
+        font-weight: 400;
     }
+
 `;
