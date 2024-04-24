@@ -12,7 +12,7 @@
     "CustomerForm.address": "Endereço:",
     "CustomerForm.number": "Numero:",
     "CustomerForm.complement": "Complemento:",
-    "CustomerForm.cep": "CEP:",
+    "CustomerForm.zipcode": "CEP:",
     "CustomerForm.city": "Cidade:",
     "CustomerForm.state": "Estado:",
     "CustomerForm.neighborhood": "Bairro:",

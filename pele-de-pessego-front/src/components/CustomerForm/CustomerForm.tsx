@@ -30,9 +30,9 @@ const CustomerForm: FC<CustomerFormProps> = () => (
           <Form.Control type="text"/>
     </Form.Group>&emsp;
 
-    <Form.Group controlId="cep">
+    <Form.Group controlId="zipcode">
           <Form.Label className='label'>
-            <FormattedMessage id="CustomerForm.cep"/>
+            <FormattedMessage id="CustomerForm.zipcode"/>
           </Form.Label><br/>
           <Form.Control type="text" required/>
     </Form.Group><br/>
