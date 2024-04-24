@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Router from './routes'
 
 // Languages // 
 import {IntlProvider} from 'react-intl';
 import Portuguese from './lang/pt.json'
 import English from './lang/en-us.json'
+
 
 const userLanguage  = navigator.language || 'pt-BR';
 
@@ -23,6 +25,7 @@ console.log(userLanguage);
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
     <React.StrictMode>
       <IntlProvider locale={userLanguage} messages={lang}>
