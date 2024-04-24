@@ -3,7 +3,7 @@ import { ProductCardWrapper } from './ProductCard.styled';
 import { FormattedMessage } from 'react-intl';
 import Card from 'react-bootstrap/Card';
 import product01Image from './../../assets/product01.png';
-import "bootstrap-icons/font/bootstrap-icons.css";
+import arrowProductCard from './../../assets/arrowProductCard.svg';
 
 interface ProductCardProps {}
 
@@ -20,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = () => (
          </div>
          <div className="product-price">
             <FormattedMessage id="ProductCard.price" defaultMessage="R$ 29,99" />
-            <i className="bi bi-arrow-up-right-circle" style={{ fontSize: '32px' }}></i>
+            <img src={arrowProductCard} alt="" />
          </div>
       </Card.Body>
    </Card>
