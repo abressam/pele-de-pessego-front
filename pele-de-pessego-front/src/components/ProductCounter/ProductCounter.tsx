@@ -26,9 +26,9 @@ const ProductCounter: FC<ProductCounterProps> = () => {
          <span id="price">R$ {price.toFixed(2)}</span>
 
          <div className="counter">
-            <button onClick={decrement}> - </button>
+            <button id="operator" onClick={decrement}> - </button>
             <span id="number"> {count} </span>
-            <button onClick={increment}> + </button>
+            <button id="operator" onClick={increment}> + </button>
          </div>
       </div>
     </ProductCounterWrapper>
