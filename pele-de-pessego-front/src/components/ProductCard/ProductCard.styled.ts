@@ -4,10 +4,11 @@ import styled from 'styled-components';
 export const ProductCardWrapper = styled.div`
     display: flex;
     align-items: center;
-    background-color: white;
     border-radius: 10px;
 
     .custom-card-style {
+        background-color: white;
+
         width: 15rem;
         height: 21rem;
         box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
