@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UserForm2Wrapper = styled.div`
+export const CustomerFormWrapper = styled.div`
 .label{
     color: #B54E4A;
     font-size: 14px;
