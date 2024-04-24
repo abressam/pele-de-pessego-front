@@ -3,5 +3,21 @@
     "ProductCard.brand": "Fashion",
     "ProductCard.price": "R$ 29.99",
     "ProductDescription.title": "About",
-    "ProductButton.name": "Buy"
+    "ProductButton.name": "Buy",
+    "UserForm.name": "Full Name:",
+    "UserForm.cpf": "CPF:",
+    "UserForm.email": "Email:",
+    "UserForm.password": "Password:",
+    "UserForm.confirmpassword": "Confirm Password:",
+    "CustomerForm.address": "Address:",
+    "CustomerForm.number": "Number:",
+    "CustomerForm.complement": "Complement:",
+    "CustomerForm.zipcode": "Zip Code:",
+    "CustomerForm.city": "City:",
+    "CustomerForm.state": "State:",
+    "CustomerForm.neighborhood": "Neighborhood:",
+    "CustomerForm.phonenumber": "Phone Number:",
+    "UserFormButton.next": "Next",
+    "UserFormButton.register": "Register",
+    "UserFormButton.send": "Send"
 }
