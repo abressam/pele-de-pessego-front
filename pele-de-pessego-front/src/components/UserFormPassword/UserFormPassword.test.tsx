@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import UserFormSenha from './UserFormSenha';
+import UserFormPassword from './UserFormPassword';
 
 describe('<UserFormSenha />', () => {
   test('it should mount', () => {
-    render(<UserFormSenha />);
+    render(<UserFormPassword />);
     
-    const userFormSenha = screen.getByTestId('UserFormSenha');
+    const userFormPassword = screen.getByTestId('UserFormSenha');
 
-    expect(userFormSenha).toBeInTheDocument();
+    expect(userFormPassword).toBeInTheDocument();
   });
 });
