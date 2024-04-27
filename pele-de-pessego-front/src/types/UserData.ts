@@ -1,6 +1,7 @@
 export default interface UserData {
-    id?: any | null,
-    title: string,
-    description: string,
-    published?: boolean,
-  }
+  name: string;
+  email: string;
+  password: string;
+  confirmpassword: string;
+  is_admin: boolean;
+}
