@@ -1,31 +1,79 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { LoginWrapper } from './Login.styled';
-import UserFormEmail from '../UserFormEmail/UserFormEmail';
-import UserFormPassword from '../UserFormPassword/UserFormPassword';
-import UserFormButton from '../UserFormButton/UserFormButton';
-import Button from 'react-bootstrap/Button';
+import { FormattedMessage } from 'react-intl';
+import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import { useForm } from "react-hook-form";
+import SignInData from '../../types/SignInData';
+import SignInService from '../../services/SignInService';
 import {Link} from 'react-router-dom';
 
 interface LoginProps {}
 
-const Login: FC<LoginProps> = () => (
- <LoginWrapper data-testid="Login">
- <Form className='formLogin'>
-      <UserFormEmail></UserFormEmail>
+const Login: FC = () => {
 
-      <UserFormPassword></UserFormPassword>
+  const initialSignInState: SignInData = {
+    email: "",
+    password: ""
+  };
 
-      <p className='p'>Ainda não tem conta?<Link to="/">Cadastre-se aqui!</Link></p>
-      {/* Mudei a tag a para Link e href para to assim a pagina não vai dar refresh toda vex que mudar a página */}
+  const { register, handleSubmit, reset } = useForm<SignInData>();
 
-      <div className='divbutton'>
-      <UserFormButton buttonText="UserFormButton.send" />
-      </div>
-      
-      
-    </Form>
- </LoginWrapper>
-);
+  const onSubmit = (data: SignInData) => {
+    console.log(data);
+
+    SignInService.login(data)
+    .then(response => {
+      console.log('Usuário fez login com sucesso:', response.data);
+
+      // Convertendo o objeto de resposta em JSON
+      const responseData = JSON.stringify(response.data);
+
+      // Salvando os dados no localStorage
+      localStorage.setItem('userData', responseData);
+
+      reset(initialSignInState);
+    })
+    .catch(error => {
+      console.error('Erro ao iniciar sessão do usuário:', error);
+    });
+
+  };
+
+  return (
+    <LoginWrapper data-testid="Login">
+    <Form className='formLogin' id="signInForm" onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group controlId="email">
+          <Form.Label className='label'>
+            <FormattedMessage id="UserForm.email"/>
+          </Form.Label><br/>
+          <Form.Control 
+            type="email" 
+            {...register("email", { required: true })}
+          />
+        </Form.Group>
+  
+        <Form.Group controlId="password">
+          <Form.Label className='label'>
+            <FormattedMessage id="UserForm.password"/>
+          </Form.Label><br/>
+          <Form.Control 
+            type="password" 
+            {...register("password", { required: true })}
+          />
+        </Form.Group>
+  
+        <p className='p'>Ainda não tem conta?  <Link to="/signup">Cadastre-se aqui!</Link></p>
+        {/* Mudei a tag a para Link e href para to assim a pagina não vai dar refresh toda vex que mudar a página */}
+  
+        <div className='divbutton'>
+          <Button variant="primary" type="submit" form="signInForm">
+            <FormattedMessage id="UserFormButton.send" defaultMessage="Cadastrar" />
+          </Button>
+        </div>
+      </Form>
+   </LoginWrapper>
+  );
+};
 
 export default Login;

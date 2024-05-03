@@ -1,52 +1,96 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { useForm } from "react-hook-form";
 import { UserFormWrapper } from './UserForm.styled';
 import Form from 'react-bootstrap/Form';
 import { FormattedMessage } from 'react-intl';
-import UserFormButton from '../UserFormButton/UserFormButton';
-import UserFormEmail from '../UserFormEmail/UserFormEmail';
-import UserFormPassword from '../UserFormPassword/UserFormPassword';
-import {Link} from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import UserData from '../../types/UserData';
+import UserFormService from '../../services/UserFormService';
 
-interface UserFormProps {}
+const UserForm: FC = () => {
 
-const UserForm: FC<UserFormProps> = () => (
- <UserFormWrapper data-testid="UserForm">
-  <Form className='formCadastro'>
-    <Form.Group controlId="name">
+  const initialUserState: UserData = {
+    name: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+    is_admin: false
+  };
+
+  const { register, handleSubmit, reset } = useForm<UserData>();
+
+  const onSubmit = (data: UserData) => {
+    const is_admin = data.email.endsWith('@pdpsofty.com');
+    data.is_admin = is_admin;
+
+    console.log(data);
+
+    UserFormService.createUser(data)
+    .then(response => {
+      console.log('Usuário criado com sucesso:', response.data);
+      reset(initialUserState);
+    })
+    .catch(error => {
+      console.error('Erro ao criar usuário:', error);
+    });
+
+  };
+
+  return (
+    <UserFormWrapper data-testid="UserForm">
+      <Form className='formCadastro' id="userForm" onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group controlId="name">
           <Form.Label className='label'>
-           <FormattedMessage id="UserForm.name"/>
-          </Form.Label><br/>
-          <Form.Control type="text" required/>
-    </Form.Group>
+          <FormattedMessage id="UserForm.name"/>
+            </Form.Label><br/>
+          <Form.Control 
+            type="text"
+            {...register("name", { required: true })}
+          />
+        </Form.Group>
 
-    <Form.Group controlId="cpf">
+        <Form.Group controlId="email">
           <Form.Label className='label'>
-            <FormattedMessage id="UserForm.cpf"/>
+            <FormattedMessage id="UserForm.email"/>
           </Form.Label><br/>
-          <Form.Control type="text" required/>
-    </Form.Group>
+          <Form.Control 
+            type="email" 
+            {...register("email", { required: true })}
+          />
+        </Form.Group>
 
-    <UserFormEmail></UserFormEmail>
+        <Form.Group controlId="password">
+          <Form.Label className='label'>
+            <FormattedMessage id="UserForm.password"/>
+          </Form.Label><br/>
+          <Form.Control 
+            type="password" 
+            {...register("password", { required: true })}
+          />
+        </Form.Group>
 
-    <UserFormPassword></UserFormPassword>
-
-    <Form.Group controlId="confirmpassword">
+        <Form.Group controlId="confirmpassword">
           <Form.Label className='label'>
             <FormattedMessage id="UserForm.confirmpassword"/>
           </Form.Label><br/>
-          <Form.Control type="password" required/>
-    </Form.Group>
+          <Form.Control 
+            type="password" 
+            {...register("confirmpassword", { required: true })}
+          />
+        </Form.Group>
 
-    <p className='p'>Já tem conta?<Link to="/login">Faça seu login aqui!</Link></p>
-    {/* Mudei a tag a para Link e href para to assim a pagina não vai dar refresh toda vex que mudar a página */}
+        <p className='p'>Já tem conta?  <Link to="/login">Faça seu login aqui!</Link></p>
 
-    <div className='divbutton'>
-    <UserFormButton buttonText="UserFormButton.next" />
-    </div>
-    
-  </Form>
-  
- </UserFormWrapper>
-);
+        <div className='divbutton'>
+          <Button variant="primary" type="submit" form="userForm">
+            <FormattedMessage id="UserFormButton.register" defaultMessage="Cadastrar" />
+          </Button>
+        </div>
+
+      </Form>
+    </UserFormWrapper>
+  );
+};
 
 export default UserForm;
