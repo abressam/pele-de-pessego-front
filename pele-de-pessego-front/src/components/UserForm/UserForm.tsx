@@ -80,7 +80,7 @@ const UserForm: FC = () => {
           />
         </Form.Group>
 
-        <p className='p'>Já tem conta?<Link to="/login">Faça seu login aqui!</Link></p>
+        <p className='p'>Já tem conta?  <Link to="/login">Faça seu login aqui!</Link></p>
 
         <div className='divbutton'>
           <Button variant="primary" type="submit" form="userForm">
