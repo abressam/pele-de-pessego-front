@@ -45,6 +45,7 @@ export const LoginWrapper = styled.div`
         background-color: white;
         color:#34513A;
         text-align: center;
+        border-color: transparent;
     }
     
     button:hover {

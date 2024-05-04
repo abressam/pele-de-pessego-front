@@ -2,7 +2,6 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import UserForm from './components/UserForm/UserForm';
 import CustomerForm from './components/CustomerForm/CustomerForm';
 import Login from './components/Login/Login';
-import SearchBar from './components/SearchBar/SearchBar';
 import Navbar from './components/Navbar/Navbar';
 import CategoryBar from './components/CategoryBar/CategoryBar';
 
