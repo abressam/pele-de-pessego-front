@@ -44,12 +44,13 @@ export const UserFormWrapper = styled.div`
         border-radius: 4px ;
         background-color: #B54E4A;
         color:#F7E9DE;
+        border-color:transparent;
     }
 
     button:hover {
         background-color: #A52A2A;
         color: white;
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        
       }
 
       button:active {

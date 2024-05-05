@@ -4,6 +4,7 @@ import logoImg from './../../assets/logo.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import { Button } from './Navbar.styled';
 import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation hook and Navigate component
+import {Link} from 'react-router-dom';
 
 const Navbar: FC = () => {
   const location = useLocation(); // Get current location
@@ -21,8 +22,8 @@ const Navbar: FC = () => {
   return (
     <div>
       <NavbarContainer>
-        <NavBrand href="/">
-          <img src={logoImg} alt="Logo" />
+        <NavBrand>
+        <Link to="/"><img src={logoImg} alt="Logo" /></Link>
         </NavBrand>
         <SearchBarWrapper2>
           <SearchBar />
