@@ -1,34 +1,64 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { CustomerFormWrapper } from './CustomerForm.styled';
-import UserFormButton from '../UserFormButton/UserFormButton';
-import { Form, FormGroup } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import CustomerData from '../../types/CustomerData';
+import CustomerService from '../../services/CustomerService';
 import { useForm } from 'react-hook-form';
 
 const CustomerForm: FC = () => {
 
-  const { register, handleSubmit, setValue, setFocus } = useForm();
+  const initialUserState: CustomerData = {
+    cpf: "",
+    phone: "",
+    zipcode: "",
+    city: "",
+    complement: "",
+    street: "",
+    number: 0,
+    neighbourhood: "",
+    state: ""
+  };
+
+  const onSubmit = (data: CustomerData) => {
+    console.log(data);
+
+    data.number = Number(data.number);
+
+    CustomerService.createCustomer(data)
+    .then((response: any) => {
+      console.log('Usuário cliente criado com sucesso:', response.data);
+      reset(initialUserState);
+    })
+    .catch(error => {
+      console.error('Erro ao criar usuário cliente:', error);
+    });
+
+  };
+
+  const { register, handleSubmit, setValue, setFocus, reset } = useForm<CustomerData>();
 
   const checkCEP = (e: { target: { value: string; }; }) => {
      const cep = e.target.value.replace(/\D/g, '');
     //  console.log(cep);
      if (cep === '') {
       // Se estiver vazio, limpa os valores dos campos
-      setValue('address', '');
+      setValue('street', '');
       setValue('city', '');
       setValue('state', '');
-      setValue('neighborhood', '');
+      setValue('neighbourhood', '');
       return; // Sai da função
     } else{
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(res=> res.json()).then(data=> {
       // console.log(data);
-      setValue('address', data.logradouro);
+      setValue('street', data.logradouro);
       setValue('city', data.localidade);
       setValue('state', data.uf);
-      setValue('neighborhood', data.bairro);
+      setValue('neighbourhood', data.bairro);
       if(data.logradouro === ''){
-        setFocus('address');
+        setFocus('street');
       }else{
         setFocus('number');
       }
@@ -38,7 +68,7 @@ const CustomerForm: FC = () => {
 
 return(
   <CustomerFormWrapper data-testid="CustomerForm">
-     <Form className='customerForm'>
+  <Form className='customerForm' id="customerForm" onSubmit={handleSubmit(onSubmit)}>
 
   <Form.Group controlId="cpf">
      <Form.Label className='label'>
@@ -55,11 +85,11 @@ return(
            {...register("zipcode", { required: true })} onBlur={checkCEP}/>
         </Form.Group><br/>
 
-  <Form.Group controlId="address">
+  <Form.Group controlId="street">
         <Form.Label className='label'>
-           <FormattedMessage id="CustomerForm.address"/>
+           <FormattedMessage id="CustomerForm.street"/>
         </Form.Label><br/>
-        <Form.Control className='inputAddress' type="text" {...register("address", { required: true })}/>
+        <Form.Control className='inputStreet' type="text" {...register("street", { required: true })}/>
   </Form.Group><br/>
 
   <Form.Group controlId="number">
@@ -90,22 +120,24 @@ return(
         <Form.Control className='input' type="text" {...register("state", { required: true })}/>
   </Form.Group><br/>
 
-  <Form.Group controlId="neighborhood">
+  <Form.Group controlId="neighbourhood">
         <Form.Label className='label'>
-           <FormattedMessage id="CustomerForm.neighborhood"/>
+           <FormattedMessage id="CustomerForm.neighbourhood"/>
         </Form.Label><br/>
-        <Form.Control className='input' type="text" {...register("neighborhood", { required: true })}/>
+        <Form.Control className='input' type="text" {...register("neighbourhood", { required: true })}/>
   </Form.Group>&emsp;
 
-  <Form.Group controlId="phonenumber">
+  <Form.Group controlId="phone">
         <Form.Label className='label'>
            <FormattedMessage id="CustomerForm.phonenumber"/>
         </Form.Label><br/>
-        <Form.Control className='input' type="text" {...register("phonenumber", { required: true })}/>
+        <Form.Control className='input' type="text" {...register("phone", { required: true })}/>
   </Form.Group><br/><br/>
 
   <div className='divButton'>
-  <UserFormButton buttonText="UserFormButton.register" />
+    <Button variant="primary" type="submit" form="customerForm">
+      <FormattedMessage id="UserFormButton.register" />
+    </Button>
   </div>
   
   </Form>

@@ -1,17 +1,20 @@
 import httpCustomer from "../common/http-customer";
 import CustomerData from "../types/CustomerData";
-import AuthHeader from "./AuthHeader";
+import { setAuthorizationHeader } from "./AuthHeader";
 
 const getCustomer = () => {
-    return httpCustomer.get("/customer/info", {headers: AuthHeader()});
+    setAuthorizationHeader(httpCustomer)
+    return httpCustomer.get("/customer/info");
 };
 
 const createCustomer = (data: CustomerData) => {
-    return httpCustomer.post<CustomerData>("/customer/insert", data, {headers: AuthHeader()});
+    setAuthorizationHeader(httpCustomer)
+    return httpCustomer.put<CustomerData>("/customer/insert", data);
 };
 
 const deleteCustomer = () => {
-    return httpCustomer.delete("/customer/remove", {headers: AuthHeader()});
+    setAuthorizationHeader(httpCustomer)
+    return httpCustomer.delete("/customer/remove");
 };
 
 const CustomerService = {

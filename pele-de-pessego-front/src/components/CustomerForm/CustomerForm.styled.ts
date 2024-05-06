@@ -18,7 +18,7 @@ export const CustomerFormWrapper = styled.div`
         font-size:14px;
     }
 
-    .inputAddress{
+    .inputStreet{
         border: 1px solid #B54E4A;
         border-radius: 6px;
         min-width: 490px;
