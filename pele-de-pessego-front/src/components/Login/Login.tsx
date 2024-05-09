@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { useForm } from "react-hook-form";
 import SignInData from '../../types/SignInData';
 import SignInService from '../../services/SignInService';
+import UserFormService from '../../services/UserFormService';
 import {Link} from 'react-router-dom';
 
 interface LoginProps {}
@@ -19,24 +20,33 @@ const Login: FC = () => {
 
   const { register, handleSubmit, reset } = useForm<SignInData>();
 
-  const onSubmit = (data: SignInData) => {
-    console.log(data);
+  const onSubmit = async (data: SignInData) => {
 
-    SignInService.login(data)
-    .then(response => {
+    await SignInService.login(data)
+    .then((response: any) => {
       console.log('Usuário fez login com sucesso:', response.data);
 
-      // Convertendo o objeto de resposta em JSON
-      const responseData = JSON.stringify(response.data);
-
       // Salvando os dados no localStorage
-      localStorage.setItem('userData', responseData);
+      localStorage.setItem('jwt', response.data.jwt);
 
       reset(initialSignInState);
     })
-    .catch(error => {
+    .catch((error: any) => {
       console.error('Erro ao iniciar sessão do usuário:', error);
     });
+
+    await UserFormService.getUser()
+    .then((response: any) => {
+      console.log('Dados do usuário:', response.data);
+
+      localStorage.setItem('email', response.data.email);
+      localStorage.setItem('isAdmin', response.data.is_admin);
+    })
+    .catch((error: any) => {
+      console.error('Erro ao iniciar sessão do usuário:', error);
+    });
+
+    
 
   };
 
