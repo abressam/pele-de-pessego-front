@@ -19,5 +19,12 @@
     "CustomerForm.phonenumber": "Phone Number:",
     "UserFormButton.next": "Next",
     "UserFormButton.register": "Register",
-    "UserFormButton.send": "Enter"
+    "UserFormButton.send": "Enter",
+    "ProductForm.name": "Name:",
+    "ProductForm.type": "Type:",
+    "ProductForm.brand": "Brand:",
+    "ProductForm.price": "Price:",
+    "ProductForm.quantity": "Quantity:",
+    "ProductForm.description": "Description:",
+    "ProductForm.image": "Image:"
 }
