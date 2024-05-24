@@ -25,6 +25,7 @@ const Login: FC = () => {
     await SignInService.login(data)
     .then((response: any) => {
       console.log('Usuário fez login com sucesso:', response.data);
+      
 
       // Salvando os dados no localStorage
       localStorage.setItem('jwt', response.data.jwt);
@@ -42,6 +43,7 @@ const Login: FC = () => {
       localStorage.setItem('email', response.data.email);
       localStorage.setItem('isAdmin', response.data.is_admin);
     })
+
     .catch((error: any) => {
       console.error('Erro ao iniciar sessão do usuário:', error);
     });
