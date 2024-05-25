@@ -39,9 +39,10 @@ const Login: FC = () => {
     await UserFormService.getUser()
     .then((response: any) => {
       console.log('Dados do usuário:', response.data);
+      const userData = response.data.user
 
-      localStorage.setItem('email', response.data.email);
-      localStorage.setItem('isAdmin', response.data.is_admin);
+      localStorage.setItem('email', userData.email);
+      localStorage.setItem('isAdmin', userData.is_admin);
     })
 
     .catch((error: any) => {
