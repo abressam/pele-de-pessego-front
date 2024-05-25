@@ -21,7 +21,7 @@ const UserForm: FC = () => {
   const { register, handleSubmit, reset } = useForm<UserData>();
 
   const onSubmit = (data: UserData) => {
-    const is_admin = data.email.endsWith('@pdpsofty.com');
+    const is_admin = data.email.endsWith('@pdpsoft.com');
     data.is_admin = is_admin;
 
     console.log(data);
