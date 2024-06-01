@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Button, NavbarAdminWrapper } from './NavbarAdmin.styled';
 import {NavBrand, NavLink, NavLinks, SearchBarWrapper2, StyledBagIcon } from './NavbarAdmin.styled';
 import logoImg from './../../assets/logo.svg';
@@ -11,21 +11,41 @@ import { FormattedMessage } from 'react-intl';
 
 interface NavbarAdminProps {}
 
-const NavbarAdmin: FC<NavbarAdminProps> = () => (
- <NavbarAdminWrapper data-testid="NavbarAdmin">
-    <div>
-      <NavbarContainer>
-        <NavBrand>
-        <Link to="/"><img src={logoImg} alt="Logo" /></Link>
-        </NavBrand>
-        <Link to="/login">
-        <Button className="button-nav-login" type="button">
-          <FormattedMessage id="UserFormButton.exit" />
-        </Button>
-      </Link>
-      </NavbarContainer>
-    </div>
- </NavbarAdminWrapper>
-);
+const NavbarAdmin: FC<NavbarAdminProps> = () => {
+
+  const location = useLocation(); // Get current location
+  const navigate = useNavigate();
+
+  function logout() {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('email');
+    localStorage.removeItem('isAdmin');
+    navigate('/login'); // Navigate to login page
+    window.location.reload(); // Force refresh
+  }
+
+  useEffect(() => {
+    // This effect will run on every location change
+    // Logic to handle any necessary updates
+  }, [location]); // Dependency array with location ensures this runs on route change
+ 
+  return(
+  
+    <NavbarAdminWrapper data-testid="NavbarAdmin">
+       <div>
+         <NavbarContainer>
+           <NavBrand>
+           <Link to="/"><img src={logoImg} alt="Logo" /></Link>
+           </NavBrand>
+           <Link to="/login">
+           <Button className="button-nav-login" type="button" onClick={logout}>
+             <FormattedMessage id="UserFormButton.exit" />
+           </Button>
+         </Link>
+         </NavbarContainer>
+       </div>
+    </NavbarAdminWrapper>
+   );
+} 
 
 export default NavbarAdmin;

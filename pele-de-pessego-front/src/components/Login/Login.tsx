@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import SignInData from '../../types/SignInData';
 import SignInService from '../../services/SignInService';
 import UserFormService from '../../services/UserFormService';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 interface LoginProps {}
 
@@ -19,6 +19,7 @@ const Login: FC = () => {
   };
 
   const { register, handleSubmit, reset } = useForm<SignInData>();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: SignInData) => {
 
@@ -45,10 +46,19 @@ const Login: FC = () => {
       localStorage.setItem('isAdmin', userData.is_admin);
     })
 
+
+
     .catch((error: any) => {
       console.error('Erro ao iniciar sessão do usuário:', error);
     });
 
+    const isAdmin = localStorage.getItem('isAdmin');
+    
+    if (isAdmin ==='true') {
+      window.location.href = '/productform';
+    }else{
+      window.location.href = '/';
+    }
     
 
   };

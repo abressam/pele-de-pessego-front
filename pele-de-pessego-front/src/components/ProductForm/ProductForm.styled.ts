@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const ProductFormWrapper = styled.div`
+
+    margin-top: 100px;
     .label{
         color: #B54E4A;
         font-size: 14px;

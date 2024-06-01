@@ -26,5 +26,6 @@
     "ProductForm.price": "Price:",
     "ProductForm.quantity": "Quantity:",
     "ProductForm.description": "Description:",
-    "ProductForm.image": "Image:"
+    "ProductForm.image": "Image:",
+    "UserFormButton.exit": "Exit"
 }
