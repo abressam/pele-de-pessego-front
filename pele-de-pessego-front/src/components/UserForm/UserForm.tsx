@@ -4,11 +4,13 @@ import { UserFormWrapper } from './UserForm.styled';
 import Form from 'react-bootstrap/Form';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserData from '../../types/UserData';
 import UserFormService from '../../services/UserFormService';
 
 const UserForm: FC = () => {
+
+  const navigate = useNavigate();
 
   const initialUserState: UserData = {
     name: "",
@@ -34,6 +36,12 @@ const UserForm: FC = () => {
     .catch(error => {
       console.error('Erro ao criar usuário:', error);
     });
+
+    if (is_admin) {
+      navigate('/login');  // Redirect to login if user is admin
+    } else {
+      navigate('/customerform');  // Redirect to customer form if user is not admin
+    }
 
   };
 

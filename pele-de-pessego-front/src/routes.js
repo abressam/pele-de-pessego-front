@@ -5,12 +5,17 @@ import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import CategoryBar from './components/CategoryBar/CategoryBar';
 import ProductForm from './components/ProductForm/ProductForm';
+import NavbarAdmin from './components/NavbarAdmin/NavbarAdmin';
+import AdminCategoryBar from './components/AdminCategoryBar/AdminCategoryBar';
 
 export default function AppRouter() {
+
+    const isAdmin = localStorage.getItem('isAdmin');
     return (
         <Router>
             <div>
-                <Navbar/>
+                 {isAdmin ==='true' ? <NavbarAdmin /> : <Navbar />}
+                 {isAdmin && <AdminCategoryBar />}
                 <Routes>
                     <Route path='/' element={<CategoryBar />}/>
                     <Route path='/signup' element={<UserForm />}/>
