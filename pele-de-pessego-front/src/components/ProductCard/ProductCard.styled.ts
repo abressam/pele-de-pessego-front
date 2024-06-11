@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 
 export const ProductCardWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
 
     .custom-card-style {
         background-color: white;
