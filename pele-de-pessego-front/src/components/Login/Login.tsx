@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { LoginWrapper } from './Login.styled';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'react-bootstrap';
@@ -8,10 +8,15 @@ import SignInData from '../../types/SignInData';
 import SignInService from '../../services/SignInService';
 import UserFormService from '../../services/UserFormService';
 import {Link, useNavigate} from 'react-router-dom';
+import { checkAdminAndRedirect } from '../../utils/checkAuth';
 
 interface LoginProps {}
 
 const Login: FC = () => {
+
+  // useEffect(() => {
+  //   checkAdminAndRedirect();
+  // }, []);
 
   const initialSignInState: SignInData = {
     email: "",
@@ -46,20 +51,9 @@ const Login: FC = () => {
       localStorage.setItem('isAdmin', userData.is_admin);
     })
 
-
-
     .catch((error: any) => {
       console.error('Erro ao iniciar sessão do usuário:', error);
-    });
-
-    const isAdmin = localStorage.getItem('isAdmin');
-    
-    if (isAdmin ==='true') {
-      window.location.href = '/productform';
-    }else{
-      window.location.href = '/';
-    }
-    
+    });  
 
   };
 

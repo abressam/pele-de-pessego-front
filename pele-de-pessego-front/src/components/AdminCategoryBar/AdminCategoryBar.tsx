@@ -8,7 +8,7 @@ const AdminCategoryBar: FC<AdminCategoryBarProps> = () => (
    <div>
       <AdminCategoryBarWrapper data-testid="AdminCategoryBar">
          <CategoryLink href="ProductForm">CADASTRAR PRODUTO</CategoryLink>
-         <CategoryLink href="#">ESTOQUE</CategoryLink>
+         <CategoryLink href="ProductStock">ESTOQUE</CategoryLink>
          <CategoryLink href="#">DASHBOARD</CategoryLink>
       </AdminCategoryBarWrapper>
    </div>

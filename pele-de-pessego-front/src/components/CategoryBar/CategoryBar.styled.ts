@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const CategoryBarWrapper = styled.div`
-  top: 45px; /* Adjust this value to match the height of your navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 65px; /* Adjust this value to match the height of your navbar */
   left: 0;
   right: 0;
   bottom: 0;
@@ -12,9 +15,6 @@ export const CategoryBarWrapper = styled.div`
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const CategoryLink = styled.a`
@@ -30,3 +30,10 @@ export const CategoryLink = styled.a`
   }
 `;
 
+export const ImageBody = styled.div`
+  display: flex;
+  margin: 80px 0px 30px 0px;
+  width: 100%
+  justify-content: center;
+  align-items: center;
+`;
