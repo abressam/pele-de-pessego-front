@@ -4,11 +4,14 @@ import Card from 'react-bootstrap/Card';
 import ProductService from '../../services/ProductService';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
+import { checkAdminAndRedirect } from '../../utils/checkAuth';
 
 const ProductStock: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
   const navigate = useNavigate();
   useEffect(() => {
+    checkAdminAndRedirect(navigate);
+
     ProductService.getAllProducts()
       .then(response => {
         setProducts(response.data.product);

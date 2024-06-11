@@ -9,22 +9,29 @@ interface ProductHeaderProps {
    en_type: string,
 }
 
-const ProductHeader: FC<ProductHeaderProps> = ({brand, pt_name, en_name, pt_type, en_type}) => (
- <ProductHeaderWrapper data-testid="ProductHeader">
-   <div className="header">
-      <div className="type">
-         <span>{pt_type}</span>
-      </div>
+const ProductHeader: FC<ProductHeaderProps> = ({brand, pt_name, en_name, pt_type, en_type}) => {
+   const userLanguage = localStorage.getItem('language')
 
-      <div className="name">
-         <p>{pt_name}</p>
-      </div>
+   const name = userLanguage === 'pt-BR' ? pt_name : en_name;
+   const type = userLanguage === 'pt-BR' ? pt_type : en_type;
 
-      <div className="brand">
-         <span>{brand}</span>
-      </div>
-   </div>
- </ProductHeaderWrapper>
-);
+   return(
+      <ProductHeaderWrapper data-testid="ProductHeader">
+        <div className="header">
+           <div className="type">
+              <span>{type}</span>
+           </div>
+     
+           <div className="name">
+              <p>{name}</p>
+           </div>
+     
+           <div className="brand">
+              <span>{brand}</span>
+           </div>
+        </div>
+      </ProductHeaderWrapper>
+     );
+} 
 
 export default ProductHeader;

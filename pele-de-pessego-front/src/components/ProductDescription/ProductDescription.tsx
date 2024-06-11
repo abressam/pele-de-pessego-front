@@ -7,20 +7,26 @@ interface ProductDescriptionProps {
    pt_desc: string;
 }
 
-const ProductDescription: FC<ProductDescriptionProps> = ({en_desc, pt_desc}) => (
- <ProductDescriptionWrapper data-testid="ProductDescription">
-   <div className="card">
-      <div className="description-title">
-         <FormattedMessage id="ProductDescription.title" defaultMessage="Sobre" />
-      </div>
+const ProductDescription: FC<ProductDescriptionProps> = ({en_desc, pt_desc}) => {
+   const userLanguage = localStorage.getItem('language')
 
-      <div className="description-text">
-         <p>
-            {pt_desc}
-         </p>
-      </div>
-   </div>
- </ProductDescriptionWrapper>
-);
+   const desc = userLanguage === 'pt-BR' ? pt_desc : en_desc;
+
+   return(
+      <ProductDescriptionWrapper data-testid="ProductDescription">
+        <div className="card">
+           <div className="description-title">
+              <FormattedMessage id="ProductDescription.title" defaultMessage="Sobre" />
+           </div>
+     
+           <div className="description-text">
+              <p>
+                 {desc}
+              </p>
+           </div>
+        </div>
+      </ProductDescriptionWrapper>
+     );
+} 
 
 export default ProductDescription;

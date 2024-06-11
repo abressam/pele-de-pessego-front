@@ -20,6 +20,8 @@ if (userLanguage  === "pt-BR") {
   lang = English;
 }
 
+localStorage.setItem('language', userLanguage);
+
 console.log(userLanguage);
 
 const root = ReactDOM.createRoot(

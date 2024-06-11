@@ -1,11 +1,11 @@
-export const checkAdminAndRedirect = () => {
+import { NavigateFunction } from 'react-router-dom';
+
+export const checkAdminAndRedirect = (navigate: NavigateFunction) => {
     const isAdmin = localStorage.getItem('isAdmin');
     
     if (isAdmin === 'true') {
-      window.location.href = '/productform';
-    } else if (isAdmin === 'false') {
-      window.location.href = '/';
+      navigate('/productstock');
     } else {
-      window.location.href = '/login';
+      navigate('/');
     }
 };
