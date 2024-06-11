@@ -22,7 +22,7 @@ export default function AppRouter() {
                     <Route path='/signup' element={<UserForm />}/>
                     <Route path='/customerform' element={<CustomerForm />} />
                     <Route path='/login' element={<Login />} />
-                    <Route path='/productform' element={<ProductForm />} />
+                    <Route path='/productform/:id?' element={<ProductForm />} />
                     <Route path='/productstock' element={<ProductStock />} />
                 </Routes>
             </div>

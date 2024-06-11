@@ -6,14 +6,33 @@ import { checkAdminAndRedirect } from '../../utils/checkAuth';
 import Form from 'react-bootstrap/Form';
 import ProductData from '../../types/ProductData';
 import ProductService from '../../services/ProductService';
+import { useParams, useNavigate } from 'react-router-dom';
 
 interface ProductFormProps {}
 
 const ProductForm: FC = () => {
+   const { id } = useParams<{ id: string }>();
+   const navigate = useNavigate();
 
-   // useEffect(() => {
-   //    checkAdminAndRedirect();
-   //  }, []);
+   
+   const { register, handleSubmit, reset, setValue } = useForm<ProductData>();
+   const [imageBase64, setImageBase64] = useState<string>("");
+
+   useEffect(() => {
+      if (id) {
+        ProductService.getProductById(Number(id))
+          .then(response => {
+            const product = response.data.product;
+            Object.keys(product).forEach(key => {
+              setValue(key as keyof ProductData, product[key]);
+            });
+            setImageBase64(product.image);
+          })
+          .catch(error => {
+            console.error('Erro ao carregar produto:', error);
+          });
+      }
+    }, [id, setValue]);
 
    const initialUserState: ProductData = {
       brand: "",
@@ -28,24 +47,33 @@ const ProductForm: FC = () => {
       pt_desc: "",
    };
 
-   const { register, handleSubmit, reset, setValue } = useForm<ProductData>();
-   const [imageBase64, setImageBase64] = useState<string>("");
-
    const onSubmit = (data: ProductData) => {
       data.image = imageBase64;
       data.price = parseFloat(data.price.toString());
       data.quantity = parseInt(data.quantity.toString());
       console.log(data);
 
-      ProductService.createProduct(data)     
-      .then(response => {
-         console.log('Produto criado com sucesso:', response.data);
-         reset(initialUserState);
-       })
-       .catch(error => {
-         console.error('Erro ao criar produto:', error);
-       });
-
+      if (id) {
+         ProductService.createOrUpdateProduct(data)
+           .then(response => {
+             console.log('Produto atualizado com sucesso:', response.data);
+             console.log()
+             navigate("/productstock");
+           })
+           .catch(error => {
+             console.error('Erro ao atualizar produto:', error);
+           });
+       } else {
+         ProductService.createOrUpdateProduct(data)
+           .then(response => {
+             console.log('Produto criado com sucesso:', response.data);
+             reset(initialUserState);
+             navigate("/productstock");
+           })
+           .catch(error => {
+             console.error('Erro ao criar produto:', error);
+           });
+       }
    };
 
    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -203,7 +231,7 @@ const ProductForm: FC = () => {
 
             <div className='divButton'>
                <Button variant="primary" type="submit" form="productForm">
-                  Cadastrar
+                  {id ? 'Atualizar' : 'Cadastrar'}
                </Button>
             </div>
 

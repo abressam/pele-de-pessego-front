@@ -3,15 +3,15 @@ import { ProductStockWrapper } from './ProductStock.styled';
 import Card from 'react-bootstrap/Card';
 import ProductService from '../../services/ProductService';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 
 const ProductStock: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     ProductService.getAllProducts()
       .then(response => {
         setProducts(response.data.product);
-        console.log(response.data.product);
       })
       .catch(error => {
         console.error('Erro ao carregar produtos:', error);
@@ -27,6 +27,7 @@ const ProductStock: FC = () => {
       ProductService.deleteProduct(id)
       .then(response => {
         console.log("Produto excluído com sucesso!");
+        setProducts(prevProducts => prevProducts.filter(product => product.id !== id))
       })
       .catch(error => {
         console.error("Erro ao excluir o produto:", error);
@@ -34,9 +35,11 @@ const ProductStock: FC = () => {
     }
   };
 
-  const handleEditClick = () => {
+  const handleEditClick = (id: number) => {
     // Lógica para editar o produto
     console.log('Editar produto');
+    navigate(`/productform/${id}`);
+
   };
 
   return (
@@ -78,7 +81,7 @@ const ProductStock: FC = () => {
                 <button onClick={() => handleDeleteClick(product.id)} className="btn btn-danger">
                   <Trash size={20} />
                 </button>
-                <button onClick={handleEditClick} className="btn btn-primary">
+                <button onClick={() => handleEditClick(product.id)} className="btn btn-primary">
                   <PencilSquare size={20} />
                 </button>
               </div>

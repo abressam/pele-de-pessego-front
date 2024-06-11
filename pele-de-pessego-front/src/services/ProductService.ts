@@ -7,14 +7,18 @@ const getAllProducts = () => {
     return httpProduct.get("/product/info");
 };
 
-// const getProductById = (data: ProductData) => {
-//     setAuthorizationHeader(httpProduct)
-//     return httpProduct.get("/product/info/id");
-// };
-
-const createProduct = (data: ProductData) => {
+const getProductById = (id: number) => {
     setAuthorizationHeader(httpProduct)
-    return httpProduct.put<ProductData>("/product/insert", data);
+    return httpProduct.get(`/product/info/${id}`);
+};
+
+const createOrUpdateProduct = (data: ProductData) => {
+    setAuthorizationHeader(httpProduct)
+    if (data.id) {
+        return httpProduct.put<ProductData>(`/product/insert/`, data);
+    } else {
+        return httpProduct.put<ProductData>("/product/insert", data);
+    }
 };
 
 const deleteProduct = (id: number) => {
@@ -24,8 +28,8 @@ const deleteProduct = (id: number) => {
 
 const ProductService = {
     getAllProducts,
-    // getProductById,
-    createProduct,
+    getProductById,
+    createOrUpdateProduct,
     deleteProduct
 };
 
