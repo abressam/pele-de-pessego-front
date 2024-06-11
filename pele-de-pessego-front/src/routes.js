@@ -8,6 +8,7 @@ import ProductForm from './components/ProductForm/ProductForm';
 import NavbarAdmin from './components/NavbarAdmin/NavbarAdmin';
 import AdminCategoryBar from './components/AdminCategoryBar/AdminCategoryBar';
 import ProductStock from './components/ProductStock/ProductStock';
+import MainProduct from './components/MainProduct/MainProduct';
 
 export default function AppRouter() {
 
@@ -24,6 +25,7 @@ export default function AppRouter() {
                     <Route path='/login' element={<Login />} />
                     <Route path='/productform/:id?' element={<ProductForm />} />
                     <Route path='/productstock' element={<ProductStock />} />
+                    <Route path='/product/:id' element={<MainProduct />} />
                 </Routes>
             </div>
         </Router>

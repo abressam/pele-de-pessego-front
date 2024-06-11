@@ -1,29 +1,31 @@
 import { FC, useState } from 'react';
 import { ProductCounterWrapper } from './ProductCounter.styled';
 
-interface ProductCounterProps {}
+interface ProductCounterProps {
+    price: number;
+}
 
-const ProductCounter: FC<ProductCounterProps> = () => {
+const ProductCounter: FC<ProductCounterProps> = ({price}) => {
   const [count, setCount] = useState(1);
-  const priceIncrement = 50; // obter preço do produto a partir do backend
-  const [price, setPrice] = useState(50.00); // adicionar esse mesmo valor aqui para ser o inicial
+  const priceIncrement = price; // obter preço do produto a partir do backend
+  const [finalPrice, setPrice] = useState(price); // adicionar esse mesmo valor aqui para ser o inicial
 
   const increment = () => {
     setCount(count + 1);
-    setPrice(price + priceIncrement);
+    setPrice(finalPrice + priceIncrement);
   };
 
   const decrement = () => {
    if (count > 1) {
       setCount(count - 1);
-      setPrice(price - priceIncrement);
+      setPrice(finalPrice - priceIncrement);
     }  
    };
 
   return (
     <ProductCounterWrapper data-testid="ProductCounter">
       <div className="product-price">
-         <span id="price">R$ {price.toFixed(2)}</span>
+         <span id="price">R$ {finalPrice.toFixed(2)}</span>
 
          <div className="counter">
             <button id="operator" onClick={decrement}> - </button>

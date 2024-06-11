@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import product01Image from './../../assets/product01.png';
 import { ProductImageWrapper } from './ProductImage.styled';
 
-interface ProductImageProps {}
-
-const ProductImage: FC<ProductImageProps> = () => (
+interface ProductImageProps {
+  src: string; 
+}
+const ProductImage: FC<ProductImageProps> = ({ src }) => (
  <ProductImageWrapper data-testid="ProductImage">
-   <img src={product01Image} alt="" />
+   <img src={src} alt="" />
  </ProductImageWrapper>
 );
 
