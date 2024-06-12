@@ -10,18 +10,6 @@ import CustomerData from '../../types/CustomerData';
 
 interface CustomerProfile {}
 
-const initialCustomerData: CustomerData = {
-  zipcode: "",
-  city: "",
-  state: "",
-  neighbourhood: "",
-  street: "",
-  number: 0,
-  complement: "",
-  phone: "",
-  cpf: "",
-};
-
 const CustomerProfile: FC = () => {
   const navigate = useNavigate();
 
@@ -33,7 +21,8 @@ const CustomerProfile: FC = () => {
   }, [navigate]);
 
   const [user, setUser] = useState<{ name: string, email: string, is_admin: boolean } | null>(null);
-  const [customer, setCustomer] = useState<CustomerData>(initialCustomerData);
+  const [customer, setCustomer] = useState<CustomerData | null>(null);
+  const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
     UserFormService.getUser()
@@ -49,23 +38,57 @@ const CustomerProfile: FC = () => {
     CustomerService.getCustomer()
       .then(response => {
         if (response.status === 404) {
-          setCustomer(initialCustomerData);
+          setCustomer(null);
         } else {
           setCustomer(response.data.customer);
+          setShowButton(false);
         }
       })
       .catch(error => {
-        if (error.response && error.response.status === 404) {
-          setCustomer(initialCustomerData);
-        } else {
-          console.error('Erro ao carregar os dados do cliente:', error);
-        }
+        console.error('Erro ao carregar os dados do cliente:', error);
       });
   }, []);
 
   const handleEditClickUser = () => {
     navigate(`/signup/edit`, { state: user });
   };
+
+  const handleDeleteClickUser = () => {
+    const confirmDelete = window.confirm('Tem certeza que deseja excluir este perfil? A ação é permanente!');
+    if (confirmDelete) {
+      UserFormService.deleteUser()
+        .then(response => {
+          localStorage.removeItem('jwt')
+          localStorage.removeItem('isAdmin')
+          navigate(`/`);
+        })
+        .catch(error => {
+          console.error("Erro ao excluir o usuário:", error);
+        });
+    }
+  };
+
+  const handleCreateCustumer = () => {
+    navigate(`/customerform`);
+  }
+
+  const handleEditCustomerClick = () => {
+    navigate(`/customerform`, { state: customer });
+  }
+
+  const handleDeleteCustomerClick = () => {
+    const confirmDelete = window.confirm('Tem certeza que deseja excluir este endereço e contato?');
+    if (confirmDelete) {
+      CustomerService.deleteCustomer()
+        .then(response => {
+          console.log("Usuário cliente excluído com sucesso!");
+          setCustomer(response.data.customer)
+        })
+        .catch(error => {
+          console.error("Erro ao excluir usuário cliente:", error);
+        });
+    }
+  }
 
   return (
     <CustomerProfileWrapper data-testid="CustomerProfile">
@@ -89,13 +112,33 @@ const CustomerProfile: FC = () => {
         </Card>
       )}
 
-      <Card className="custom-card">
-        <Card.Body className="custom-card-style">
-          <div className="first-info">
-            <div className="product-type">
-              <FormattedMessage id="CustomerProfile.title" />
+      {showButton && !customer && (
+        <Card className="custom-card">
+          <Card.Body className="custom-card-style">
+            <div className="first-info">
+              <div className="product-type">
+                <FormattedMessage id="CustomerProfile.title" />
+              </div>
+              <div className="info icons">
+                <div className="button-address">
+                    <button className='custom-button button-size' onClick={() => handleCreateCustumer()}>
+                    <FormattedMessage id="Buttom.address" />
+                    </button>
+                </div>
+              </div>
             </div>
-            <div className="product-brand">
+          </Card.Body>
+        </Card>
+      )}
+
+      {!showButton && customer && (
+        <Card className="custom-card">
+          <Card.Body className="custom-card-style">
+            <div className="first-info">
+              <div className="product-type">
+                <FormattedMessage id="CustomerProfile.title" />
+              </div>
+              <div className="product-brand">
               <FormattedMessage id="CustomerForm.zipcode" />
               <span>{customer.zipcode}</span>
             </div>
@@ -131,21 +174,23 @@ const CustomerProfile: FC = () => {
               <FormattedMessage id="UserForm.cpf" />
               <span>{customer.cpf}</span>
             </div>
-          </div>
-          <div className="info icons">
-            <button className="custom-button trash-button">
-              <Trash className='icons' size={20} />
-            </button>
-            <button className="custom-button pencil-button">
-              <PencilSquare className='icons' size={20} />
-            </button>
-          </div>
-        </Card.Body>
-      </Card>
+            </div>
+            <div className="info icons">
+              <button className="custom-button trash-button">
+                <Trash onClick={() => handleDeleteCustomerClick()} className='icons' size={20} />
+              </button>
+              <button className="custom-button pencil-button">
+                <PencilSquare onClick={() => handleEditCustomerClick()} className='icons' size={20} />
+              </button>
+            </div>
+          </Card.Body>
+        </Card>
+      )}
 
       <div className="button-position">
-        <button className='custom-button button-size'>
-          <FormattedMessage id="CustomerProfile.delete" defaultMessage="Adicionar ao carrinho" />
+        <button onClick={() => handleDeleteClickUser()}
+        className='custom-button button-size'>
+          <FormattedMessage id="CustomerProfile.delete" />
         </button>
       </div>
     </CustomerProfileWrapper>

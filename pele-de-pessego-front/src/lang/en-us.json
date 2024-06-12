@@ -28,7 +28,8 @@
     "ProductForm.description": "Description",
     "ProductForm.image": "Image",
     "UserFormButton.exit": "Exit",
-    "CustomerProfile.title": "Register Data",
-    "CustomerProfile.delete": "Delete account",
-    "Buttom.update": "Update"
+    "CustomerProfile.title": "Address and Contact",
+    "CustomerProfile.delete": "Delete Account",
+    "Buttom.update": "Update",
+    "Buttom.address": "Register Address"
 }

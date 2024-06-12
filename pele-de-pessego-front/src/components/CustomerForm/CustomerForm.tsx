@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { CustomerFormWrapper } from './CustomerForm.styled';
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
@@ -6,10 +6,39 @@ import { FormattedMessage } from 'react-intl';
 import CustomerData from '../../types/CustomerData';
 import CustomerService from '../../services/CustomerService';
 import { useForm } from 'react-hook-form';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const CustomerForm: FC = () => {
+   const navigate = useNavigate();
+   const location = useLocation();
+   const [isUpdate, setIsUpdate] = useState(false);
+   const { register, handleSubmit, setValue, setFocus, reset, watch } = useForm<CustomerData>();
 
-  const initialUserState: CustomerData = {
+   useEffect(() => {
+      const isAdmin = localStorage.getItem('isAdmin');
+      if (isAdmin === 'true') {
+        navigate('/productstock');
+      }
+    }, [navigate]);
+
+    
+  useEffect(() => {
+      if (location.state) {
+      const customerData = location.state as CustomerData;
+      setValue('cpf', customerData.cpf);
+      setValue('phone', customerData.phone);
+      setValue('zipcode', customerData.zipcode);
+      setValue('city', customerData.city);
+      setValue('complement', customerData.complement);
+      setValue('street', customerData.street);
+      setValue('number', customerData.number);
+      setValue('neighbourhood', customerData.neighbourhood);
+      setValue('state', customerData.state);
+      setIsUpdate(true);
+      }
+   }, [location.state, setValue]);
+
+  const initialCustomerState: CustomerData = {
     cpf: "",
     phone: "",
     zipcode: "",
@@ -29,7 +58,8 @@ const CustomerForm: FC = () => {
     CustomerService.createCustomer(data)
     .then((response: any) => {
       console.log('Usuário cliente criado com sucesso:', response.data);
-      reset(initialUserState);
+      reset(initialCustomerState);
+      navigate(`/customerprofile`);
     })
     .catch(error => {
       console.error('Erro ao criar usuário cliente:', error);
@@ -37,11 +67,8 @@ const CustomerForm: FC = () => {
 
   };
 
-  const { register, handleSubmit, setValue, setFocus, reset } = useForm<CustomerData>();
-
   const checkCEP = (e: { target: { value: string; }; }) => {
      const cep = e.target.value.replace(/\D/g, '');
-    //  console.log(cep);
      if (cep === '') {
       // Se estiver vazio, limpa os valores dos campos
       setValue('street', '');
@@ -65,6 +92,19 @@ const CustomerForm: FC = () => {
       });
     }  
    }
+
+   const cpf = watch("cpf");
+   const zipcode = watch("zipcode");
+   const street = watch("street");
+   const number = watch("number");
+   const city = watch("city");
+   const state = watch("state");
+   const neighbourhood = watch("neighbourhood");
+   const phone = watch("phone");
+ 
+   const isFormValid = () => {
+      return cpf && zipcode && street && number && city && state && neighbourhood && phone;
+   };
 
 return(
   <CustomerFormWrapper data-testid="CustomerForm">
@@ -135,8 +175,18 @@ return(
   </Form.Group><br/><br/>
 
   <div className='divButton'>
-    <Button variant="primary" type="submit" form="customerForm">
-      <FormattedMessage id="UserFormButton.register" />
+    <Button 
+      variant="primary" 
+      type="submit" 
+      form="customerForm"
+      disabled={!isFormValid()} 
+      className={isFormValid() ? '' : 'disabled-button'}
+    >
+      {isUpdate ? (
+         <FormattedMessage id="Buttom.update" defaultMessage="Atualizar" />
+      ) : (
+         <FormattedMessage id="Buttom.address" />
+      )}  
     </Button>
   </div>
   

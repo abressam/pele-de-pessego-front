@@ -97,17 +97,24 @@ export const CustomerProfileWrapper = styled.div`
         flex-direction: row-reverse;
     }
 
+    .button-address {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        margin: 20px;
+    }
+
     .button-size {
         background-color: #B54E4A;
         border-radius: 8px;
-        width: 164px;
-        height: 64px;
+        width: 130px;
+        height: 54px;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 14px;
         color: #F7E9DE;
         font-family: "DM Sans", sans-serif;
         gap: 8px;
