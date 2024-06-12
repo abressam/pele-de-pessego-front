@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import { Button } from './Navbar.styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 const Navbar: FC = () => {
   const location = useLocation();
@@ -34,7 +35,7 @@ const Navbar: FC = () => {
     if (isAdmin === 'false') {
       return (
         <Button className="button-nav-profile" type="button" onClick={handleProfileClick}>
-          Perfil
+          <FormattedMessage id="Buttom.profile" />
         </Button>
       );
     }
@@ -51,13 +52,13 @@ const Navbar: FC = () => {
           <SearchBar />
         </SearchBarWrapper2>
         <NavLinks>
-          <NavLink href="#">
+          <NavLink href="/cart">
             <StyledBagIcon />
           </NavLink>
           {renderProfileButton()}
           {jwt ? (
             <Button className="button-nav-logout" type="button" onClick={handleLogoutClick}>
-              Sair
+                <FormattedMessage id="UserFormButton.exit" />
             </Button>
           ) : (
             <Button className="button-nav-login" type="button" onClick={handleButtonClick}>

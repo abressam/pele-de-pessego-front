@@ -1,13 +1,13 @@
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useForm } from "react-hook-form";
 import { LoginWrapper } from './Login.styled';
+import Form from 'react-bootstrap/Form';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import { useForm } from "react-hook-form";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import SignInData from '../../types/SignInData';
 import SignInService from '../../services/SignInService';
 import UserFormService from '../../services/UserFormService';
-import {Link, useNavigate} from 'react-router-dom';
 import { checkAdminAndRedirect } from '../../utils/checkAuth';
 
 interface LoginProps {}
@@ -19,7 +19,7 @@ const Login: FC = () => {
     password: ""
   };
 
-  const { register, handleSubmit, reset } = useForm<SignInData>();
+  const { register, handleSubmit, reset, watch } = useForm<SignInData>();
   const navigate = useNavigate();
 
   const onSubmit = async (data: SignInData) => {
@@ -50,6 +50,13 @@ const Login: FC = () => {
 
   };
 
+  const email = watch("email");
+  const password = watch("password");
+
+  const isFormValid = () => {
+      return email && password;
+  };
+
   return (
     <LoginWrapper data-testid="Login">
     <Form className='formLogin' id="signInForm" onSubmit={handleSubmit(onSubmit)}>
@@ -74,10 +81,15 @@ const Login: FC = () => {
         </Form.Group>
   
         <p className='p'>Ainda não tem conta?  <Link to="/signup">Cadastre-se aqui!</Link></p>
-        {/* Mudei a tag a para Link e href para to assim a pagina não vai dar refresh toda vex que mudar a página */}
   
         <div className='divbutton'>
-          <Button variant="primary" type="submit" form="signInForm">
+          <Button 
+            variant="primary" 
+            type="submit" 
+            form="signInForm" 
+            disabled={!isFormValid()} 
+            className={isFormValid() ? '' : 'disabled-button'}
+          >
             <FormattedMessage id="UserFormButton.send" defaultMessage="Cadastrar" />
           </Button>
         </div>

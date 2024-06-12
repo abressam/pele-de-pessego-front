@@ -57,4 +57,16 @@ export const UserFormWrapper = styled.div`
         background-color: #A52A2A;
         transform: translateY(1px);
       }
+
+      .disabled-button {
+        background-color: gray; /* Cor do botão desativado */
+        cursor: not-allowed; /* Remove o ponteiro do cursor */
+      }
+
+    .disabled-button:hover {
+        background-color: gray; /* Mantém a cor do botão desativado */
+        color: white; /* Mantém a cor do texto do botão */
+        box-shadow: none; /* Remove a sombra do botão */
+    }
+      
 `;
