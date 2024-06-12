@@ -18,8 +18,8 @@
     "CustomerForm.neighbourhood": "Neighbourhood:",
     "CustomerForm.phonenumber": "Phone Number:",
     "UserFormButton.next": "Next",
-    "UserFormButton.register": "Register",
-    "UserFormButton.send": "Enter",
+    "UserFormButton.register": "Sign up",
+    "UserFormButton.send": "Sign in",
     "ProductForm.name": "Name",
     "ProductForm.type": "Type",
     "ProductForm.brand": "Brand",
@@ -29,5 +29,6 @@
     "ProductForm.image": "Image",
     "UserFormButton.exit": "Exit",
     "CustomerProfile.title": "Register Data",
-    "CustomerProfile.delete": "Delete account"
+    "CustomerProfile.delete": "Delete account",
+    "Buttom.update": "Update"
 }

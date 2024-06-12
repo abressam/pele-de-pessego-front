@@ -29,5 +29,6 @@
     "ProductForm.image": "Imagem",
     "UserFormButton.exit": "Sair",
     "CustomerProfile.title": "Dados Cadastrais",
-    "CustomerProfile.delete": "Deletar conta"
+    "CustomerProfile.delete": "Deletar conta",
+    "Buttom.update": "Atualizar"
 }

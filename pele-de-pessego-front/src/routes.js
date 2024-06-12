@@ -23,6 +23,7 @@ export default function AppRouter() {
                 <Routes>
                     <Route path='/' element={<CategoryBar />}/>
                     <Route path='/signup' element={<UserForm />}/>
+                    <Route path='/signup/edit' element={<UserForm />}/>
                     <Route path='/customerform' element={<CustomerForm />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/productform/:id?' element={<ProductForm />} />

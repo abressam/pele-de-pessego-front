@@ -136,7 +136,7 @@ const CartProducts: FC = () => {
                      </div>
 
                      <div className="info icons">
-                        <button   onClick={() => product.id && handleDeleteClick(product.id)} className="custom-button trash-button">
+                        <button onClick={() => product.id && handleDeleteClick(product.id)} className="custom-button trash-button">
                            <Trash className='icons' size={20} />
                         </button>
                         <button onClick={() => product.id && handleEditClick(product.id, product.quantity)} className="custom-button pencil-button">
