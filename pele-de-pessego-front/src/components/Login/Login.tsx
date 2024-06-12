@@ -9,27 +9,33 @@ import SignInService from '../../services/SignInService';
 import UserFormService from '../../services/UserFormService';
 import {Link, useNavigate} from 'react-router-dom';
 
+
 interface LoginProps {}
 
 const Login: FC = () => {
-
+  
   const initialSignInState: SignInData = {
     email: "",
     password: ""
   };
 
+
   const { register, handleSubmit, reset } = useForm<SignInData>();
   const navigate = useNavigate();
 
+
   const onSubmit = async (data: SignInData) => {
+
 
     await SignInService.login(data)
     .then((response: any) => {
       console.log('Usuário fez login com sucesso:', response.data);
-      
+     
+
 
       // Salvando os dados no localStorage
       localStorage.setItem('jwt', response.data.jwt);
+
 
       reset(initialSignInState);
     })
@@ -37,10 +43,12 @@ const Login: FC = () => {
       console.error('Erro ao iniciar sessão do usuário:', error);
     });
 
+
     await UserFormService.getUser()
     .then((response: any) => {
       console.log('Dados do usuário:', response.data);
       const userData = response.data.user
+
 
       localStorage.setItem('email', userData.email);
       localStorage.setItem('isAdmin', userData.is_admin);
@@ -48,20 +56,24 @@ const Login: FC = () => {
 
 
 
+
+
+
     .catch((error: any) => {
       console.error('Erro ao iniciar sessão do usuário:', error);
     });
 
+
     const isAdmin = localStorage.getItem('isAdmin');
-    
+   
     if (isAdmin ==='true') {
       window.location.href = '/productform';
     }else{
       window.location.href = '/';
     }
-    
-
+   
   };
+
 
   return (
     <LoginWrapper data-testid="Login">
@@ -70,25 +82,25 @@ const Login: FC = () => {
           <Form.Label className='label'>
             <FormattedMessage id="UserForm.email"/>
           </Form.Label><br/>
-          <Form.Control 
-            type="email" 
+          <Form.Control
+            type="email"
             {...register("email", { required: true })}
           />
         </Form.Group>
-  
+ 
         <Form.Group controlId="password">
           <Form.Label className='label'>
             <FormattedMessage id="UserForm.password"/>
           </Form.Label><br/>
-          <Form.Control 
-            type="password" 
+          <Form.Control
+            type="password"
             {...register("password", { required: true })}
           />
         </Form.Group>
-  
+ 
         <p className='p'>Ainda não tem conta?  <Link to="/signup">Cadastre-se aqui!</Link></p>
         {/* Mudei a tag a para Link e href para to assim a pagina não vai dar refresh toda vex que mudar a página */}
-  
+ 
         <div className='divbutton'>
           <Button variant="primary" type="submit" form="signInForm">
             <FormattedMessage id="UserFormButton.send" defaultMessage="Cadastrar" />
@@ -98,5 +110,6 @@ const Login: FC = () => {
    </LoginWrapper>
   );
 };
+
 
 export default Login;
