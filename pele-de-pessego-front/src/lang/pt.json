@@ -30,7 +30,13 @@
     "UserFormButton.exit": "Sair",
     "CustomerProfile.title": "Endereço e Contato",
     "CustomerProfile.delete": "Deletar Conta",
+    "CustomerProfile.cart": "Minhas Compras",
+    "CustomerProfile.cartbutton": "Carrinho",
     "Buttom.update": "Atualizar",
-    "Buttom.address": "Cadastrar Endereço"
+    "Buttom.address": "Cadastrar Endereço",
+    "Buttom.profile": "Perfil",
+    "Cart.empty": "Seu carrinho está vazio",
+    "CartButton.empty": "Buscar Produtos",
+    "Cart.total": "Preço Total: "
 
 }

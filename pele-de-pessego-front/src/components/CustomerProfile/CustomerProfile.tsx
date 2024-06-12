@@ -76,6 +76,10 @@ const CustomerProfile: FC = () => {
     navigate(`/customerform`, { state: customer });
   }
 
+  const handleCartClick = () => {
+    navigate(`/cart`);
+  }
+
   const handleDeleteCustomerClick = () => {
     const confirmDelete = window.confirm('Tem certeza que deseja excluir este endereço e contato?');
     if (confirmDelete) {
@@ -186,6 +190,23 @@ const CustomerProfile: FC = () => {
           </Card.Body>
         </Card>
       )}
+
+      <Card className="custom-card">
+          <Card.Body className="custom-card-style">
+            <div className="first-info">
+              <div className="product-type">
+                <FormattedMessage id="CustomerProfile.cart" />
+              </div>
+              <div className="info icons">
+                <div className="button-address">
+                    <button className='custom-button button-size' onClick={() => handleCartClick()}>
+                    <FormattedMessage id="CustomerProfile.cartbutton" />
+                    </button>
+                </div>
+              </div>
+            </div>
+          </Card.Body>
+        </Card>
 
       <div className="button-position">
         <button onClick={() => handleDeleteClickUser()}

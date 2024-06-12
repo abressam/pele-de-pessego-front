@@ -30,6 +30,12 @@
     "UserFormButton.exit": "Exit",
     "CustomerProfile.title": "Address and Contact",
     "CustomerProfile.delete": "Delete Account",
+    "CustomerProfile.cart": "My Cart",
+    "CustomerProfile.cartbutton": "Cart",
     "Buttom.update": "Update",
-    "Buttom.address": "Register Address"
+    "Buttom.address": "Register Address",
+    "Buttom.profile": "Profile",
+    "Cart.empty": "Your cart is empty",
+    "CartButton.empty": "Search Products",
+    "Cart.total": "Total Price: "
 }

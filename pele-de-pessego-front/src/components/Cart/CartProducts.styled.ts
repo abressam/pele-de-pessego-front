@@ -108,8 +108,36 @@ export const CartProductsWrapper = styled.div`
         font-family: "DM Sans", sans-serif;
         gap: 8px;
     }
+    
+    .buttoncart-size {
+        background-color: #B54E4A;
+        border-radius: 8px;
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        font-size: 12px;
+        color: #F7E9DE;
+        font-family: "DM Sans", sans-serif;
+        gap: 8px;
+    }
 
     .icon-wrapper {
         font-size: 24px;
     }
+
+    .empty-cart-message {
+        font-weight: 700;
+        font-size: 24px;
+        color: #34513A;
+        font-family: "DM Sans", sans-serif;
+        width: 300px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
 `;
