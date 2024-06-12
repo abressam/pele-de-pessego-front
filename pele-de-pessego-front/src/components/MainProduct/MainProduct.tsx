@@ -11,8 +11,10 @@ import ProductData from '../../types/ProductData';
 
 const MainProduct: FC = () => {
 
-   const { id } = useParams(); // Obtém o ID do produto da URL
+   const { id, quantity } = useParams<{ id: string, quantity?: string }>(); // Obtém o ID e a quantidade do produto da URL
+   const [count, setCount] = useState(1);
    const [product, setProduct] = useState<ProductData>();
+   const [finalPrice, setFinalPrice] = useState(0);
 
    useEffect(() => {
       if (id) {
@@ -25,6 +27,11 @@ const MainProduct: FC = () => {
             });
       }
    }, [id]);
+
+   const handleCountChange = (newCount: number, newFinalPrice: number) => {
+      setCount(newCount);
+      setFinalPrice(newFinalPrice);
+    };
 
    return(
       <MainProductWrapper data-testid="MainProduct">
@@ -43,13 +50,21 @@ const MainProduct: FC = () => {
                      en_type={product.en_type}
                   />
                   <ProductCounter 
-                     price={product.price} 
+                     price={product.price}
+                     quantity={quantity ? parseInt(quantity) : 1} 
+                     onCountChange={handleCountChange} 
                   />
                   <ProductDescription 
                      pt_desc={product.pt_desc} 
                      en_desc={product.en_desc} 
                   />
-                  <ProductButton />
+                  {product.id && (
+                  <ProductButton 
+                     productId={product.id} 
+                     count={count}
+                     finalPrice={finalPrice}
+                  />
+                  )}
                </div>
             </div>
          )}

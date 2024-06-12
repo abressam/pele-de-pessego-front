@@ -20,13 +20,13 @@
     "UserFormButton.next": "Próximo",
     "UserFormButton.register": "Cadastrar",
     "UserFormButton.send": "Entrar",
-    "ProductForm.name": "Nome:",
-    "ProductForm.type": "Tipo:",
-    "ProductForm.brand": "Marca:",
-    "ProductForm.price": "Preço:",
-    "ProductForm.quantity": "Quantidade:",
-    "ProductForm.description": "Descrição:",
-    "ProductForm.image": "Imagem:",
+    "ProductForm.name": "Nome",
+    "ProductForm.type": "Tipo",
+    "ProductForm.brand": "Marca",
+    "ProductForm.price": "Preço",
+    "ProductForm.quantity": "Quantidad:",
+    "ProductForm.description": "Descrição",
+    "ProductForm.image": "Imagem",
     "UserFormButton.exit": "Sair"
     
 
