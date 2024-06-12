@@ -32,17 +32,11 @@ const UserForm: FC = () => {
     .then(response => {
       console.log('Usuário criado com sucesso:', response.data);
       reset(initialUserState);
+      navigate('/login');
     })
     .catch(error => {
       console.error('Erro ao criar usuário:', error);
     });
-
-    if (is_admin) {
-      navigate('/login');  // Redirect to login if user is admin
-    } else {
-      navigate('/customerform');  // Redirect to customer form if user is not admin
-    }
-
   };
 
   return (

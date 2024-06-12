@@ -1,21 +1,20 @@
 import styled from 'styled-components';
 
 export const AdminCategoryBarWrapper = styled.div`
-
-  top: 45px; /* Adjust this value to match the height of your navbar */
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #34513A;
-  color: #FFFFFF;
-  position: fixed;
-  height: 40px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+display: flex;
+justify-content: center;
+align-items: center;
+top: 65px; /* Adjust this value to match the height of your navbar */
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #34513A;
+color: #FFFFFF;
+position: fixed;
+height: 40px;
+font-family: 'DM Sans', sans-serif;
+font-size: 14px;
+font-weight: 500;
 `;
 
 export const CategoryLink = styled.a`

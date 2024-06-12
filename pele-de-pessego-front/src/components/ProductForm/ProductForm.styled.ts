@@ -2,7 +2,13 @@ import styled from 'styled-components';
 
 export const ProductFormWrapper = styled.div`
 
-    margin-top: 100px;
+    margin-top: 150px;
+
+    .form-style {
+        display: flex;
+        flex-direction: row;
+    }
+
     .label{
         color: #B54E4A;
         font-size: 14px;
@@ -104,6 +110,7 @@ export const ProductFormWrapper = styled.div`
 
     .divButton{
         text-align: center;
+        padding-top: 30px;
         display: block; /* Para que a propriedade text-align funcione */
         margin: 0 auto; /* Para centralizar horizontalmente */
     }

@@ -13,6 +13,7 @@ export const NavbarContainer = styled.nav`
   top: 0;
   left: 0;
   right: 0;
+  height: 50px;
 `;
 
 export const SearchBarWrapper2 = styled.div`

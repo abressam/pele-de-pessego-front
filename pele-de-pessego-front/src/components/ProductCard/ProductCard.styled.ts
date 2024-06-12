@@ -2,22 +2,23 @@ import styled from 'styled-components';
 
 
 export const ProductCardWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
 
     .custom-card-style {
         background-color: white;
 
-        width: 15rem;
-        height: 21rem;
+        width: 11rem;
+        height: 15rem;
         box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
         border-radius: 8px;
         padding: 8px;
     }
 
     .custom-card-img {
-        height: 200px;
+        height: 120px;
     }
 
     .product-type, .product-brand, .product-price {
@@ -51,6 +52,6 @@ export const ProductCardWrapper = styled.div`
     }
     
     .custom-card:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
 `;

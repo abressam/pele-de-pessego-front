@@ -20,12 +20,14 @@
     "UserFormButton.next": "Next",
     "UserFormButton.register": "Register",
     "UserFormButton.send": "Enter",
-    "ProductForm.name": "Name:",
-    "ProductForm.type": "Type:",
-    "ProductForm.brand": "Brand:",
-    "ProductForm.price": "Price:",
-    "ProductForm.quantity": "Quantity:",
-    "ProductForm.description": "Description:",
-    "ProductForm.image": "Image:",
-    "UserFormButton.exit": "Exit"
+    "ProductForm.name": "Name",
+    "ProductForm.type": "Type",
+    "ProductForm.brand": "Brand",
+    "ProductForm.price": "Price",
+    "ProductForm.quantity": "Quantity",
+    "ProductForm.description": "Description",
+    "ProductForm.image": "Image",
+    "UserFormButton.exit": "Exit",
+    "CustomerProfile.title": "Register Data",
+    "CustomerProfile.delete": "Delete account"
 }

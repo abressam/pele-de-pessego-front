@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { LoginWrapper } from './Login.styled';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'react-bootstrap';
@@ -8,6 +8,7 @@ import SignInData from '../../types/SignInData';
 import SignInService from '../../services/SignInService';
 import UserFormService from '../../services/UserFormService';
 import {Link, useNavigate} from 'react-router-dom';
+import { checkAdminAndRedirect } from '../../utils/checkAuth';
 
 interface LoginProps {}
 
@@ -26,11 +27,8 @@ const Login: FC = () => {
     await SignInService.login(data)
     .then((response: any) => {
       console.log('Usuário fez login com sucesso:', response.data);
-      
-
       // Salvando os dados no localStorage
       localStorage.setItem('jwt', response.data.jwt);
-
       reset(initialSignInState);
     })
     .catch((error: any) => {
@@ -41,25 +39,14 @@ const Login: FC = () => {
     .then((response: any) => {
       console.log('Dados do usuário:', response.data);
       const userData = response.data.user
-
-      localStorage.setItem('email', userData.email);
       localStorage.setItem('isAdmin', userData.is_admin);
+
+      checkAdminAndRedirect(navigate)
     })
-
-
 
     .catch((error: any) => {
       console.error('Erro ao iniciar sessão do usuário:', error);
-    });
-
-    const isAdmin = localStorage.getItem('isAdmin');
-    
-    if (isAdmin ==='true') {
-      window.location.href = '/productform';
-    }else{
-      window.location.href = '/';
-    }
-    
+    });  
 
   };
 

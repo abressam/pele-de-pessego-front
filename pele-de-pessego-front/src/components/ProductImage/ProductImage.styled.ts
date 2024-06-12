@@ -4,6 +4,6 @@ export const ProductImageWrapper = styled.div`
     background-color: white;
 
     img {
-        height: 615px;
+        height: 350px;
     }
 `;
