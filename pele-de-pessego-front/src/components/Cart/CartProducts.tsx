@@ -80,6 +80,9 @@ const CartProducts: FC = () => {
                   const updatedProducts = prevProducts.filter(product => product.id !== id);
                   const total = updatedProducts.reduce((sum, product) => sum + product.price * product.quantity, 0);
                   setTotalPrice(total);
+                  if (updatedProducts.length === 0) {
+                     setIsCartEmpty(true);
+                  }
                   return updatedProducts;
                });
              })
