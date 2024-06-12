@@ -27,5 +27,7 @@
     "ProductForm.quantity": "Quantity",
     "ProductForm.description": "Description",
     "ProductForm.image": "Image",
-    "UserFormButton.exit": "Exit"
+    "UserFormButton.exit": "Exit",
+    "CustomerProfile.title": "Register Data",
+    "CustomerProfile.delete": "Delete account"
 }

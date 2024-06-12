@@ -27,7 +27,7 @@
     "ProductForm.quantity": "Quantidad:",
     "ProductForm.description": "Descrição",
     "ProductForm.image": "Imagem",
-    "UserFormButton.exit": "Sair"
-    
-
+    "UserFormButton.exit": "Sair",
+    "CustomerProfile.title": "Dados Cadastrais",
+    "CustomerProfile.delete": "Deletar conta"
 }

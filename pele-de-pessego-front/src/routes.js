@@ -18,8 +18,8 @@ export default function AppRouter() {
     return (
         <Router>
             <div>
-                 {isAdmin ==='true' ? <NavbarAdmin /> : <Navbar />}
-                 {isAdmin && <AdminCategoryBar />}
+                {isAdmin === 'true' ? <NavbarAdmin /> : <Navbar />}
+                {isAdmin === 'true' && <AdminCategoryBar />}
                 <Routes>
                     <Route path='/' element={<CategoryBar />}/>
                     <Route path='/signup' element={<UserForm />}/>

@@ -3,27 +3,49 @@ import { NavbarContainer, NavBrand, NavLink, NavLinks, SearchBarWrapper2, Styled
 import logoImg from './../../assets/logo.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import { Button } from './Navbar.styled';
-import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation hook and Navigate component
-import {Link} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar: FC = () => {
-  const location = useLocation(); // Get current location
-  const navigate = useNavigate(); // Get Navigate component for navigation
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Determine button text and redirection path based on location
+  const isAdmin = localStorage.getItem('isAdmin');
+  const jwt = localStorage.getItem('jwt');
+
   const buttonText = location.pathname === '/login' ? 'Cadastrar' : 'Entrar';
   const redirectPath = location.pathname === '/login' ? '/signup' : '/login';
 
-  // Function to handle button click and navigate to the appropriate page
   const handleButtonClick = () => {
-    navigate(redirectPath); // Redirect to the appropriate page
+    navigate(redirectPath);
+  };
+
+  const handleProfileClick = () => {
+    navigate('/customerprofile');
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('isAdmin');
+    navigate('/login'); // Redirecionar para a página de login após logout
+  };
+
+  const renderProfileButton = () => {
+    if (isAdmin === 'false') {
+      return (
+        <Button className="button-nav-profile" type="button" onClick={handleProfileClick}>
+          Perfil
+        </Button>
+      );
+    }
+    return null; // Se isAdmin for true ou null, não criar o botão
   };
 
   return (
     <div>
       <NavbarContainer>
         <NavBrand>
-        <Link to="/"><img src={logoImg} alt="Logo" /></Link>
+          <Link to="/"><img src={logoImg} alt="Logo" /></Link>
         </NavBrand>
         <SearchBarWrapper2>
           <SearchBar />
@@ -32,13 +54,19 @@ const Navbar: FC = () => {
           <NavLink href="#">
             <StyledBagIcon />
           </NavLink>
-          <Button className="button-nav-login" type="button" onClick={handleButtonClick}>
-            {buttonText}
-          </Button>
+          {renderProfileButton()}
+          {jwt ? (
+            <Button className="button-nav-logout" type="button" onClick={handleLogoutClick}>
+              Sair
+            </Button>
+          ) : (
+            <Button className="button-nav-login" type="button" onClick={handleButtonClick}>
+              {buttonText}
+            </Button>
+          )}
         </NavLinks>
       </NavbarContainer>
     </div>
-
   );
 };
 
