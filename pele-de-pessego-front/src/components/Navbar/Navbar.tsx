@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import { NavbarContainer, NavBrand, NavLink, NavLinks, SearchBarWrapper2, StyledBagIcon, Button } from './Navbar.styled';
 import logoImg from './../../assets/logo.svg';
 import SearchBar from '../SearchBar/SearchBar';
-import { Button } from './Navbar.styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
