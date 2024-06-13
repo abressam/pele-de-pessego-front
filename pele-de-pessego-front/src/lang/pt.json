@@ -20,14 +20,23 @@
     "UserFormButton.next": "Próximo",
     "UserFormButton.register": "Cadastrar",
     "UserFormButton.send": "Entrar",
-    "ProductForm.name": "Nome:",
-    "ProductForm.type": "Tipo:",
-    "ProductForm.brand": "Marca:",
-    "ProductForm.price": "Preço:",
-    "ProductForm.quantity": "Quantidade:",
-    "ProductForm.description": "Descrição:",
-    "ProductForm.image": "Imagem:",
-    "UserFormButton.exit": "Sair"
-    
+    "ProductForm.name": "Nome",
+    "ProductForm.type": "Tipo",
+    "ProductForm.brand": "Marca",
+    "ProductForm.price": "Preço",
+    "ProductForm.quantity": "Quantidade",
+    "ProductForm.description": "Descrição",
+    "ProductForm.image": "Imagem",
+    "UserFormButton.exit": "Sair",
+    "CustomerProfile.title": "Endereço e Contato",
+    "CustomerProfile.delete": "Deletar Conta",
+    "CustomerProfile.cart": "Minhas Compras",
+    "CustomerProfile.cartbutton": "Carrinho",
+    "Buttom.update": "Atualizar",
+    "Buttom.address": "Cadastrar Endereço",
+    "Buttom.profile": "Perfil",
+    "Cart.empty": "Seu carrinho está vazio",
+    "CartButton.empty": "Buscar Produtos",
+    "Cart.total": "Preço Total: "
 
 }

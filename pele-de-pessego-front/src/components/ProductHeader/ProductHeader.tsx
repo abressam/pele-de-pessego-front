@@ -1,24 +1,37 @@
 import { FC } from 'react';
 import { ProductHeaderWrapper } from './ProductHeader.styled';
 
-interface ProductHeaderProps {}
+interface ProductHeaderProps {
+   brand: string,
+   pt_name: string,
+   en_name: string,
+   pt_type: string,
+   en_type: string,
+}
 
-const ProductHeader: FC<ProductHeaderProps> = () => (
- <ProductHeaderWrapper data-testid="ProductHeader">
-   <div className="header">
-      <div className="type">
-         <span>Protetor Solar</span>
-      </div>
+const ProductHeader: FC<ProductHeaderProps> = ({brand, pt_name, en_name, pt_type, en_type}) => {
+   const userLanguage = localStorage.getItem('language')
 
-      <div className="name">
-         <p>Protetor Solar Facial Tripla Proteção Loção Pele Radiante FPS50</p>
-      </div>
+   const name = userLanguage === 'pt-BR' ? pt_name : en_name;
+   const type = userLanguage === 'pt-BR' ? pt_type : en_type;
 
-      <div className="brand">
-         <span>Nivea</span>
-      </div>
-   </div>
- </ProductHeaderWrapper>
-);
+   return(
+      <ProductHeaderWrapper data-testid="ProductHeader">
+        <div className="header">
+           <div className="type">
+              <span>{type}</span>
+           </div>
+     
+           <div className="name">
+              <p>{name}</p>
+           </div>
+     
+           <div className="brand">
+              <span>{brand}</span>
+           </div>
+        </div>
+      </ProductHeaderWrapper>
+     );
+} 
 
 export default ProductHeader;

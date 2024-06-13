@@ -18,7 +18,6 @@ const NavbarAdmin: FC<NavbarAdminProps> = () => {
 
   function logout() {
     localStorage.removeItem('jwt');
-    localStorage.removeItem('email');
     localStorage.removeItem('isAdmin');
     navigate('/login'); // Navigate to login page
     window.location.reload(); // Force refresh

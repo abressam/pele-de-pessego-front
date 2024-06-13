@@ -7,7 +7,10 @@ import CategoryBar from './components/CategoryBar/CategoryBar';
 import ProductForm from './components/ProductForm/ProductForm';
 import NavbarAdmin from './components/NavbarAdmin/NavbarAdmin';
 import AdminCategoryBar from './components/AdminCategoryBar/AdminCategoryBar';
-import UserProfile from './components/UserProfile/UserProfile';
+import ProductStock from './components/ProductStock/ProductStock';
+import MainProduct from './components/MainProduct/MainProduct';
+import CartProducts from './components/Cart/CartProducts';
+import CustomerProfile from './components/CustomerProfile/CustomerProfile';
 
 export default function AppRouter() {
 
@@ -15,16 +18,20 @@ export default function AppRouter() {
     return (
         <Router>
             <div>
-                 {isAdmin ==='true' ? <NavbarAdmin /> : <Navbar />}
-                 
+                {isAdmin === 'true' ? <NavbarAdmin /> : <Navbar />}
+                {isAdmin === 'true' && <AdminCategoryBar />}
                 <Routes>
                     <Route path='/' element={<CategoryBar />}/>
                     <Route path='/signup' element={<UserForm />}/>
+                    <Route path='/signup/edit' element={<UserForm />}/>
                     <Route path='/customerform' element={<CustomerForm />} />
                     <Route path='/login' element={<Login />} />
-                    <Route path='/productform' element={<ProductForm />} />
-                    <Route path='/profile' element={<UserProfile />} />
-                    {isAdmin && <Route path='/*' element={<AdminCategoryBar />} />}
+                    <Route path='/productform/:id?' element={<ProductForm />} />
+                    <Route path='/productstock' element={<ProductStock />} />
+                    <Route path='/product/:id' element={<MainProduct />} />
+                    <Route path='/product/:id/edit/:quantity' element={<MainProduct />} />
+                    <Route path='/cart' element={<CartProducts />} />
+                    <Route path='/customerprofile' element={<CustomerProfile />} />
                 </Routes>
             </div>
         </Router>
