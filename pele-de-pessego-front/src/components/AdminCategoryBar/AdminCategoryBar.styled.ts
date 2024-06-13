@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const AdminCategoryBarWrapper = styled.div`
-
   top: 55px; /* Adjust this value to match the height of your navbar */
   left: 0;
   right: 0;

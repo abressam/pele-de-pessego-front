@@ -16,7 +16,11 @@ const Login: FC = () => {
   
   const initialSignInState: SignInData = {
     email: "",
-    password: ""
+    password: "",
+    jwt: function (arg0: string, jwt: any): unknown {
+      throw new Error('Function not implemented.');
+    },
+    user: undefined
   };
 
 
