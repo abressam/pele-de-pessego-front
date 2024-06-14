@@ -14,7 +14,9 @@ const AdminCategoryBar: FC<AdminCategoryBarProps> = () => (
          <CategoryLink>
             <Link to="/productstock" style={{ textDecoration: 'none', color: 'inherit' }}>ESTOQUE</Link>
          </CategoryLink>
-         <CategoryLink href="#">DASHBOARD</CategoryLink>
+         <CategoryLink href="#">
+            <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>DASHBOARD</Link>
+         </CategoryLink>
       </AdminCategoryBarWrapper>
    </div>
  

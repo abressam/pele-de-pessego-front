@@ -36,8 +36,12 @@ export const UserFormWrapper = styled.div`
       }
 
     .divbutton{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
         text-align: center;
     }
+        
     button{
         width: 150px;
         height: 35px;

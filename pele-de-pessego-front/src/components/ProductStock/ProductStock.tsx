@@ -4,19 +4,32 @@ import Card from 'react-bootstrap/Card';
 import ProductService from '../../services/ProductService';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
-import { checkAdminAndRedirect } from '../../utils/checkAuth';
+import { checkClient } from '../../utils/checkClient';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 const ProductStock: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    checkAdminAndRedirect(navigate);
 
+  useEffect(() => {
+    const needsReload = sessionStorage.getItem('needsReload');
+    if (needsReload === 'true') {
+      sessionStorage.removeItem('needsReload');
+      window.location.reload();
+    }
+  }, []);
+
+  useEffect(() => {
+    checkClient(navigate)
+ }, [navigate]);
+
+  useEffect(() => {
     ProductService.getAllProducts()
       .then(response => {
         setProducts(response.data.product);
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error('Erro ao carregar produtos:', error);
       });
   }, []);
@@ -33,6 +46,7 @@ const ProductStock: FC = () => {
         setProducts(prevProducts => prevProducts.filter(product => product.id !== id))
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error("Erro ao excluir o produto:", error);
       });
     }
@@ -45,52 +59,69 @@ const ProductStock: FC = () => {
 
   };
 
+  if (products.length === 0) {
+    return <ProductStockWrapper>Loading...</ProductStockWrapper>;
+  } 
+
   return (
     <ProductStockWrapper data-testid="ProductStock">
       <div className="vertical">
       {products.map((product, index) => (
         <Card className="custom-card" key={index}>
-          <Card.Body className="custom-card-style">
-            <div className="row">
-              <Card.Img className="custom-card-img" src={`data:image/jpeg;base64,${product.image}`} />
-              <div className="column-info">
-                <div className="info">
-                  <span>Nome (PT): {product.pt_name}</span>
-                  <span>Nome (EN): {product.en_name}</span>
+            <Card.Body className="custom-card-style">
+                <Card.Img className="custom-card-img" src={`data:image/jpeg;base64,${product.image}`} />
+                <div className="first-info">
+                  <div className="product-type">
+                      Nome (PT): {product.pt_name}
+                  </div>
+                  <div className="product-type">
+                      Nome (EN): {product.en_name}
+                  </div>
+                  <div className="product-brand">
+                      Tipo (PT): {product.pt_type}
+                  </div>
+                  <div className="product-brand">
+                      Tipo (EN): {product.en_type}
+                  </div>
+                  <div className="product-brand">
+                     Marca: {product.brand}
+                  </div>
+                  <div className="product-type">
+                      Preço: R$ {product.price}
+                  </div>
+                  <div className="product-type">
+                      Quantidade Total: {product.quantity} unidades
+                  </div>
                 </div>
 
-                <div className="info">
-                  <span>Tipo (PT): {product.pt_type}</span>
-                  <span>Tipo (EN): {product.en_type}</span>
+                <div className="info second-info">
+                    <div className="product-type">
+                      Descrição (PT)
+                    </div>
+                    <div className="product-price">
+                      {product.pt_desc}
+                    </div>
                 </div>
 
-                <div className="info">
-                  <span>Marca: {product.brand}</span>
-                  <span>Preço: R$ {product.price}</span>
+                <div className="info second-info">
+                  <div className="product-type">
+                    Descrição (EN)
+                  </div>
+                  <div className="product-price">
+                    {product.en_desc}
+                  </div>
                 </div>
-              </div>
 
-              <div className="info info-desc">
-                <span>Descrição (PT)</span>
-                <p className="text-box">{product.pt_desc}</p>
-              </div>
-
-              <div className="info info-desc">
-                <span>Descrição (EN)</span>
-                <p className="text-box">{product.en_desc}</p>
-              </div>
-
-              <div className="icons">
-                <button onClick={() => handleDeleteClick(product.id)} className="btn btn-danger">
-                  <Trash size={20} />
-                </button>
-                <button onClick={() => handleEditClick(product.id)} className="btn btn-primary">
-                  <PencilSquare size={20} />
-                </button>
-              </div>
-            </div>
-          </Card.Body>
-        </Card>
+                <div className="info icons">
+                  <button onClick={() => product.id && handleDeleteClick(product.id)} className="custom-button trash-button">
+                      <Trash className='icons' size={20} />
+                  </button>
+                  <button onClick={() => product.id && handleEditClick(product.id)} className="custom-button pencil-button">
+                      <PencilSquare className='icons' size={20} />
+                  </button>
+                </div>
+            </Card.Body>
+          </Card>
       ))}
     </div>
     </ProductStockWrapper>

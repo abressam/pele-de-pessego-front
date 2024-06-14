@@ -73,6 +73,10 @@ const UserForm: FC = () => {
     }
   };
 
+  const handleCancel = () => {
+    navigate('/customerprofile');
+  };  
+
   const name = watch("name");
   const email = watch("email");
   const password = watch("password");
@@ -133,10 +137,22 @@ const UserForm: FC = () => {
         {isUpdate ? (
           <p></p>
         ) : (
-          <p className='p'>Já tem conta?  <Link to="/login">Faça seu login aqui!</Link></p>
+          <p className='p'>
+            <FormattedMessage id="SignUp.haveaccount"/>
+              <Link to="/login">
+                <FormattedMessage id="SignUp.haveaccountlink"/>
+              </Link>
+            </p>
         )}
 
         <div className='divbutton'>
+
+        {isUpdate && (
+              <Button variant="secondary" onClick={handleCancel}>
+                <FormattedMessage id="Button.cancel" defaultMessage="Cancelar" />
+              </Button>
+        )}
+
         <Button 
             variant="primary" 
             type="submit" 
