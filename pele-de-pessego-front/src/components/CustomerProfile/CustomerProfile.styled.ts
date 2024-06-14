@@ -6,10 +6,46 @@ export const CustomerProfileWrapper = styled.div`
     gap: 20px;
     padding: 20px;
 
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .delete-button {
+        background-color: red !important;
+    }
+
+    .general-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 32px;
+        margin: 0px 12px 12px 12px;
+        width: 90%;
+        height: 500px;
+    }
+
+    .purchase-card {
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: #F7E9DE;
+        color: #B54E4A;
+        margin: 12px;
+        border-radius: 8px;
+        padding: 8px;
+    }
+
     .custom-card-style {
         display: flex;
         flex-direction: row;
         background-color: white;
+        margin: 12px;
         box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
         border-radius: 8px;
         padding: 8px;

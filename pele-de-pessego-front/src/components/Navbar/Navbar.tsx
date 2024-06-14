@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { NavbarContainer, NavBrand, NavLink, NavLinks, SearchBarWrapper2, StyledBagIcon } from './Navbar.styled';
 import logoImg from './../../assets/logo.svg';
-import SearchBar from '../SearchBar/SearchBar';
 import { Button } from './Navbar.styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -53,9 +52,6 @@ const Navbar: FC = () => {
         <NavBrand>
           <Link to="/"><img src={logoImg} alt="Logo" /></Link>
         </NavBrand>
-        <SearchBarWrapper2>
-          <SearchBar />
-        </SearchBarWrapper2>
         <NavLinks>
           <NavLink href="/cart">
             <StyledBagIcon />

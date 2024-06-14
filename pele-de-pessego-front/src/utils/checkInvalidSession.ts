@@ -11,3 +11,4 @@ export const handleApiResponse = (error: AxiosError<any>, navigate: any) => {
       console.error('Erro na requisição:', error);
    }
 };
+

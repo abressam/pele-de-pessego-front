@@ -18,7 +18,7 @@ const ProductStock: FC = () => {
       window.location.reload();
     }
   }, []);
-
+  
   useEffect(() => {
     checkClient(navigate)
  }, [navigate]);
@@ -27,6 +27,7 @@ const ProductStock: FC = () => {
     ProductService.getAllProducts()
       .then(response => {
         setProducts(response.data.product);
+        
       })
       .catch(error => {
         handleApiResponse(error, navigate);

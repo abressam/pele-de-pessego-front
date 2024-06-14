@@ -11,6 +11,8 @@ import ProductStock from './components/ProductStock/ProductStock';
 import MainProduct from './components/MainProduct/MainProduct';
 import CartProducts from './components/Cart/CartProducts';
 import CustomerProfile from './components/CustomerProfile/CustomerProfile';
+import Purchase from './components/Purchase/Purchase';
+import Success from './components/Success/Success';
 import Dashboard from './components/Dashboard/Dashboard';
 
 export default function AppRouter() {
@@ -33,6 +35,8 @@ export default function AppRouter() {
                     <Route path='/product/:id/edit/:quantity' element={<MainProduct />} />
                     <Route path='/cart' element={<CartProducts />} />
                     <Route path='/customerprofile' element={<CustomerProfile />} />
+                    <Route path='/purchase' element={<Purchase />} />
+                    <Route path='/success' element={<Success />} />
                     <Route path='/dashboard' element={<Dashboard />} />
                 </Routes>
             </div>

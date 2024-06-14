@@ -102,6 +102,7 @@ const CartProducts: FC = () => {
 
     const handleButtonClick = () => {
       checkJwt(navigate);
+      navigate('/purchase');
     };
 
     const handleSearchProductClick = () => {
@@ -189,7 +190,7 @@ const CartProducts: FC = () => {
                <div className="button-position">
                   <button onClick={handleSearchProductClick} className='custom-button'>
                      <div className="buttoncart-size">
-                        <FormattedMessage id="CartButton.empty" defaultMessage="Adicionar ao carrinho" />
+                        <FormattedMessage id="CartButton.empty"/>
                      </div>
                   </button>
                </div>
@@ -199,7 +200,7 @@ const CartProducts: FC = () => {
                         <div className="icon-wrapper">
                            <IoBagHandleSharp />
                         </div>
-                        <FormattedMessage id="ProductButton.name" defaultMessage="Adicionar ao carrinho" />
+                        <FormattedMessage id="ProductButton.name" />
                      </div>
                   </button>
                </div>
