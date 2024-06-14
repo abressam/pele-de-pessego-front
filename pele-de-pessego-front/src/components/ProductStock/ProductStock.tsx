@@ -59,6 +59,10 @@ const ProductStock: FC = () => {
 
   };
 
+  if (products.length === 0) {
+    return <ProductStockWrapper>Loading...</ProductStockWrapper>;
+  } 
+
   return (
     <ProductStockWrapper data-testid="ProductStock">
       <div className="vertical">

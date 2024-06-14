@@ -28,6 +28,31 @@ const Dashboard: FC = () => {
         ]
     });
 
+    const [chartDataByType, setChartDataByType] = useState<any>({
+        labels: [], 
+        datasets: [
+            {
+                label: "Quantidade por Tipo",
+                data: [],
+                backgroundColor: [],
+                borderColor: "black",
+                borderWidth: 2
+            }
+        ]
+    });
+
+    const generatePastelColors = (numColors: number) => {
+        const pastelColors = [
+            "rgba(75, 192, 192, 0.7)",   // Verde pastel
+            "rgba(153, 102, 255, 0.7)",  // Roxo pastel
+            "rgba(255, 206, 86, 0.7)",    // Amarelo pastel
+            "rgba(54, 162, 235, 0.7)",   // Azul pastel
+            "rgba(255, 99, 132, 0.7)",   // Vermelho pastel
+            "rgba(255, 159, 64, 0.7)",   // Laranja pastel
+        ];
+        return pastelColors.slice(0, numColors);
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -36,6 +61,7 @@ const Dashboard: FC = () => {
 
                 // Agrupa os produtos pelo campo 'brand'
                 const groupedProducts = groupProductsByBrand(productsData);
+                const groupedProductsByType = groupProductsByType(productsData);
 
                 // Atualiza o estado dos produtos
                 setProducts(productsData);
@@ -53,6 +79,19 @@ const Dashboard: FC = () => {
                                 "rgba(75, 192, 192, 0.7)",   // Verde pastel
                                 "rgba(54, 162, 235, 0.7)",   // Azul pastel
                             ],
+                            borderColor: "black",
+                            borderWidth: 2
+                        }
+                    ]
+                });
+                // Atualiza o estado do gráfico por tipo
+                setChartDataByType({
+                    labels: Object.keys(groupedProductsByType), 
+                    datasets: [
+                        {
+                            label: "Quantidade por Tipo",
+                            data: Object.values(groupedProductsByType).map(products => sumProductsQuantity(products)),
+                            backgroundColor: generatePastelColors(Object.keys(groupedProductsByType).length),
                             borderColor: "black",
                             borderWidth: 2
                         }
@@ -77,6 +116,17 @@ const Dashboard: FC = () => {
         }, {} as { [key: string]: ProductData[] });
     };
 
+    const groupProductsByType = (products: ProductData[]) => {
+        return products.reduce((acc, product) => {
+            const type = product.pt_type || product.en_type; // Considera o tipo em português ou inglês
+            if (!acc[type]) {
+                acc[type] = [];
+            }
+            acc[type].push(product);
+            return acc;
+        }, {} as { [key: string]: ProductData[] });
+    };
+
     const sumProductsQuantity = (products: ProductData[]) => {
         return products.reduce((acc, product) => acc + product.quantity, 0);
     };
@@ -87,7 +137,8 @@ const Dashboard: FC = () => {
 
     return (
         <DashboardWrapper>
-            <ProductsGraph chartData={chartData} />
+            <ProductsGraph chartData={chartData} title="Marca" description="Quantidade de produtos por marca" />
+            <ProductsGraph chartData={chartDataByType} title="Tipo" description="Quantidade de produtos por tipo" />
         </DashboardWrapper>
     );
 }
