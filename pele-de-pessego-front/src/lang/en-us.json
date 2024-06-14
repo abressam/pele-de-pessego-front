@@ -35,6 +35,7 @@
     "Buttom.update": "Update",
     "Buttom.address": "Register Address",
     "Buttom.profile": "Profile",
+    "Button.cancel": "Cancel",
     "Cart.empty": "Your cart is empty",
     "CartButton.empty": "Search Products",
     "Cart.total": "Total Price: "

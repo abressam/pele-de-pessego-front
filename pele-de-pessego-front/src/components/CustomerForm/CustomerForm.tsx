@@ -133,6 +133,10 @@ const CustomerForm: FC = () => {
       }
    };
 
+   const handleCancel = () => {
+      navigate('/customerprofile');
+    };  
+
    const cpf = watch("cpf");
    const zipcode = watch("zipcode");
    const street = watch("street");
@@ -233,6 +237,13 @@ return(
         </Form.Group><br/><br/>
 
   <div className='divButton'>
+
+      {isUpdate && (
+            <Button variant="secondary" onClick={handleCancel}>
+              <FormattedMessage id="Button.cancel" defaultMessage="Cancelar" />
+            </Button>
+      )}
+
     <Button 
       variant="primary" 
       type="submit" 
@@ -246,6 +257,7 @@ return(
          <FormattedMessage id="Buttom.address" />
       )}  
     </Button>
+
   </div>
   
   </Form>
