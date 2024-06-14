@@ -64,31 +64,74 @@ const CustomerForm: FC = () => {
 
   };
 
-  const checkCEP = (e: { target: { value: string; }; }) => {
-     const cep = e.target.value.replace(/\D/g, '');
-     if (cep === '') {
-      // Se estiver vazio, limpa os valores dos campos
-      setValue('street', '');
-      setValue('city', '');
-      setValue('state', '');
-      setValue('neighbourhood', '');
-      return; // Sai da função
-    } else{
-      fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(res=> res.json()).then(data=> {
-      // console.log(data);
-      setValue('street', data.logradouro);
-      setValue('city', data.localidade);
-      setValue('state', data.uf);
-      setValue('neighbourhood', data.bairro);
-      if(data.logradouro === ''){
-        setFocus('street');
-      }else{
-        setFocus('number');
+   const checkCEP = async (e: React.FocusEvent<HTMLInputElement>) => {
+      const cep = e.target.value.replace(/\D/g, '');
+      const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
+
+      if (cep.length !== 8 || !cepRegex.test(cep)) {
+         // Se o CEP não tiver 8 dígitos, limpa todos os campos e exibe alerta
+         setValue('street', '');
+         setValue('city', '');
+         setValue('state', '');
+         setValue('neighbourhood', '');
+         setValue('zipcode', '');
+         window.alert('CEP inválido. Por favor, verifique o CEP digitado.');
+         return; // Sai da função
       }
-      });
-    }  
-   }
+
+      try {
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      console.log(response)
+      const data = await response.json();
+
+      if (response.ok) {
+         setValue('street', data.logradouro);
+         setValue('city', data.localidade);
+         setValue('state', data.uf);
+         setValue('neighbourhood', data.bairro);
+
+         if (data.logradouro === '') {
+            // Se o logradouro não for encontrado, foca no campo street
+            setFocus('street');
+            window.alert('CEP não encontrado. Por favor, verifique o CEP digitado.');
+         } else {
+            // Caso contrário, foca no próximo campo (por exemplo, number)
+            setFocus('number');
+         }
+      } else {
+         // Caso o CEP não seja encontrado, exibe um alerta e limpa os campos
+         window.alert('CEP não encontrado. Por favor, verifique o CEP digitado.');
+         setValue('street', '');
+         setValue('city', '');
+         setValue('state', '');
+         setValue('neighbourhood', '');
+      }
+      } catch (error) {
+         console.error('Erro ao buscar informações do CEP:', error);
+         window.alert('Ocorreu um erro ao buscar informações do CEP.');
+      }
+   };
+
+   const checkPhone = async (e: React.FocusEvent<HTMLInputElement>) => {
+      const phone = e.target.value;
+      const phoneRegex = /^[1-9]{2}9[0-9]{8}$/;
+
+      if (phone.length !== 11 || !phoneRegex.test(phone)) {
+         setValue('phone', '');
+         window.alert('Número de telefone inválido. Por favor, verifique o telefone digitado.');
+         return;
+      }
+   };
+
+   const checkState = async (e: React.FocusEvent<HTMLInputElement>) => {
+      const state = e.target.value.toUpperCase();
+      const stateRegex = /^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/;
+   
+      if (!stateRegex.test(state)) {
+         setValue('state', '');
+         window.alert('Sigla do estado inválida. Por favor, verifique a sigla digitada.');
+      }
+   };
 
    const cpf = watch("cpf");
    const zipcode = watch("zipcode");
@@ -111,15 +154,22 @@ return(
      <Form.Label className='label'>
         <FormattedMessage id="UserForm.cpf"/>
      </Form.Label><br/>
-     <Form.Control className='input' type="text" {...register("cpf", { required: true })}/>
+     <Form.Control 
+     className='input'
+     maxLength={11}
+     type="text" {...register("cpf", { required: true })}/>
   </Form.Group>&emsp;
 
   <Form.Group controlId="zipcode">
         <Form.Label className='label'>
            <FormattedMessage id="CustomerForm.zipcode"/>
         </Form.Label><br/>
-        <Form.Control className='input' type="text"
-           {...register("zipcode", { required: true })} onBlur={checkCEP}/>
+        <Form.Control 
+        className='input' 
+        type="text"
+        placeholder='59280010'
+        maxLength={8}
+           {...register("zipcode", { required: true })} onBlur={checkCEP} />
         </Form.Group><br/>
 
   <Form.Group controlId="street">
@@ -154,7 +204,11 @@ return(
         <Form.Label className='label'>
            <FormattedMessage id="CustomerForm.state"/>
         </Form.Label><br/>
-        <Form.Control className='input' type="text" {...register("state", { required: true })}/>
+        <Form.Control 
+        className='input' 
+        type="text" {...register("state", { required: true })}
+        onBlur={checkState}
+        />
   </Form.Group><br/>
 
   <Form.Group controlId="neighbourhood">
@@ -168,8 +222,15 @@ return(
         <Form.Label className='label'>
            <FormattedMessage id="CustomerForm.phonenumber"/>
         </Form.Label><br/>
-        <Form.Control className='input' type="text" {...register("phone", { required: true })}/>
-  </Form.Group><br/><br/>
+        <Form.Control
+            className='input'
+            placeholder='21985678423'
+            type="text"
+            maxLength={11}
+            {...register("phone", { required: true })}
+            onBlur={checkPhone}
+          />
+        </Form.Group><br/><br/>
 
   <div className='divButton'>
     <Button 
