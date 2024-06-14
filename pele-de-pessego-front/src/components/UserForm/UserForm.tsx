@@ -137,7 +137,12 @@ const UserForm: FC = () => {
         {isUpdate ? (
           <p></p>
         ) : (
-          <p className='p'>Já tem conta?  <Link to="/login">Faça seu login aqui!</Link></p>
+          <p className='p'>
+            <FormattedMessage id="SignUp.haveaccount"/>
+              <Link to="/login">
+                <FormattedMessage id="SignUp.haveaccountlink"/>
+              </Link>
+            </p>
         )}
 
         <div className='divbutton'>

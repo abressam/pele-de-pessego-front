@@ -36,7 +36,13 @@
     "Buttom.address": "Register Address",
     "Buttom.profile": "Profile",
     "Button.cancel": "Cancel",
+    "Button.signin": "Sign in",
+    "Button.signup": "Sign up",
     "Cart.empty": "Your cart is empty",
     "CartButton.empty": "Search Products",
-    "Cart.total": "Total Price: "
+    "Cart.total": "Total Price: ",
+    "Login.signuphere": "  Sign up here!",
+    "Login.donothaveaccount": "Do not have an account?",
+    "SignUp.haveaccountlink": "  Sign in here!",
+    "SignUp.haveaccount": "Already have an account?"
 }

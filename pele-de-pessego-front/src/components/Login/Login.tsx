@@ -77,7 +77,12 @@ const Login: FC = () => {
           />
         </Form.Group>
   
-        <p className='p'>Ainda não tem conta?  <Link to="/signup">Cadastre-se aqui!</Link></p>
+        <p className='p'>
+          <FormattedMessage id="Login.donothaveaccount"/>
+          <Link to="/signup">
+            <FormattedMessage id="Login.signuphere"/>
+          </Link>
+        </p>
   
         <div className='divbutton'>
           <Button 

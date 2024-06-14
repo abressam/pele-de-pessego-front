@@ -14,7 +14,12 @@ const Navbar: FC = () => {
   const isAdmin = localStorage.getItem('isAdmin');
   const jwt = localStorage.getItem('jwt');
 
-  const buttonText = location.pathname === '/login' ? 'Cadastrar' : 'Entrar';
+  const buttonText = location.pathname === '/login' ? (
+    <FormattedMessage id="Button.signup"/>
+  ) : (
+    <FormattedMessage id="Button.signin"/>
+  );  
+  
   const redirectPath = location.pathname === '/login' ? '/signup' : '/login';
 
   const handleButtonClick = () => {
