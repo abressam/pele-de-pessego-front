@@ -6,6 +6,8 @@ export const CustomerProfileWrapper = styled.div`
     gap: 20px;
     padding: 20px;
 
+    margin-top: 100px;
+
     .header {
         display: flex;
         flex-direction: row;

@@ -14,6 +14,7 @@ import CustomerProfile from './components/CustomerProfile/CustomerProfile';
 import Purchase from './components/Purchase/Purchase';
 import Success from './components/Success/Success';
 import Dashboard from './components/Dashboard/Dashboard';
+import History from './components/History/History';
 
 export default function AppRouter() {
 
@@ -38,6 +39,7 @@ export default function AppRouter() {
                     <Route path='/purchase' element={<Purchase />} />
                     <Route path='/success' element={<Success />} />
                     <Route path='/dashboard' element={<Dashboard />} />
+                    <Route path='/history' element={<History />} />
                 </Routes>
             </div>
         </Router>

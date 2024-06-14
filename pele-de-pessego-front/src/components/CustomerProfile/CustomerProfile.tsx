@@ -100,6 +100,10 @@ const CustomerProfile: FC = () => {
     navigate(`/cart`);
   }
 
+  const handleHistoryClick = () => {
+    navigate(`/history`);
+  }
+
   const handleDeleteCustomerClick = () => {
     const confirmDelete = window.confirm('Tem certeza que deseja excluir este endereço e contato?');
     if (confirmDelete) {
@@ -252,6 +256,7 @@ const CustomerProfile: FC = () => {
               </div>
               <div className="purchase-list" style={{ maxHeight: '370px', overflowY: 'auto' }}>
                 {purchases.map((purchase, index) => {
+                    const pricePurchase = purchase.price
                   return (
                     <Card className="purchase-card">
                       <Card.Body>
@@ -261,15 +266,26 @@ const CustomerProfile: FC = () => {
                         </div>
                         <div>
                           <FormattedMessage id="PurchasePrice.customer" />
-                          R$ {purchase.price}
+                          R$ {pricePurchase.toFixed(2)}
                         </div>
+
                       </Card.Body>
                     </Card>
                   );
                 })}
               </div>
             </div>
+                        
           </Card.Body>
+
+          <div className="button-position">
+              <button onClick={handleHistoryClick} className='custom-button'>
+                <div className="button-size">
+                  <FormattedMessage id="Button.history" />
+                </div>
+              </button>
+            </div>
+
         </Card>
       </div>
 
