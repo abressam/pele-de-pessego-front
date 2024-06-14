@@ -18,6 +18,7 @@ const ProductForm: FC = () => {
    
    const { register, handleSubmit, reset, setValue } = useForm<ProductData>();
    const [imageBase64, setImageBase64] = useState<string>("");
+   const [isUpdate, setIsUpdate] = useState(false);
 
    useEffect(() => {
       checkClient(navigate)
@@ -32,6 +33,7 @@ const ProductForm: FC = () => {
               setValue(key as keyof ProductData, product[key]);
             });
             setImageBase64(product.image);
+            setIsUpdate(true);
           })
           .catch(error => {
             console.error('Erro ao carregar produto:', error);
@@ -96,6 +98,10 @@ const ProductForm: FC = () => {
         };
         reader.readAsDataURL(file);
       }
+    };
+
+    const handleCancel = () => {
+      navigate('/productstock');
     };
 
    return (
@@ -237,6 +243,12 @@ const ProductForm: FC = () => {
             </div>
 
             <div className='divButton'>
+               {isUpdate && (
+                  <Button variant="secondary" onClick={handleCancel}>
+                    Cancelar
+                  </Button>
+               )}
+
                <Button variant="primary" type="submit" form="productForm">
                   {id ? 'Atualizar' : 'Cadastrar'}
                </Button>
