@@ -12,8 +12,14 @@ const getPurchases = () => {
     return httpPurchase.get("/purchase/info/open");
 };
 
+const getClosePurchase = () => {
+    setAuthorizationHeader(httpPurchase);
+    return httpPurchase.get("/purchase/info/closed");
+};
+
 const PurchaseService = {
     executePurchase,
+    getClosePurchase,
     getPurchases
 };
 

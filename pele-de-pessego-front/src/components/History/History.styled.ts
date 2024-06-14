@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const CartProductsWrapper = styled.div`
+export const HistoryWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;

@@ -26,7 +26,7 @@ const Success = () => {
           {/* Your other JSX */}
           <div className="button-address">
             <button className='custom-button button-size' onClick={redirectToProfile}>
-              <p>Voltar ao Perfil</p>
+              <p><FormattedMessage id="Payment.button" /></p>
             </button>
           </div>
         </div>

@@ -56,7 +56,7 @@ const Purchase: FC<PurchaseProps> = () => {
       Promise.all(productDetailsPromises).then(products => {
         setProducts(products);
         const total = products.reduce((sum, product) => sum + product.price * product.quantity, 0);
-        setTotalPrice(total);
+        setTotalPrice(Math.round(total * 100) / 100); // Arredonda para 2 casas decimais
       });
     });
 
@@ -109,7 +109,7 @@ const Purchase: FC<PurchaseProps> = () => {
             setProducts(prevProducts => {
               const updatedProducts = prevProducts.filter(product => product.id !== id);
               const total = updatedProducts.reduce((sum, product) => sum + product.price * product.quantity, 0);
-              setTotalPrice(total);
+              setTotalPrice(Math.round(total * 100) / 100); // Arredonda para 2 casas decimais
               return updatedProducts;
             });
           })
@@ -273,7 +273,7 @@ const Purchase: FC<PurchaseProps> = () => {
                       Total
                     </div>
                     <div className="product-price">
-                      R$ {totalProductPrice}
+                      R$ {totalProductPrice.toFixed(2)}
                     </div>
                   </div>
 
