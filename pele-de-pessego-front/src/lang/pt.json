@@ -37,6 +37,24 @@
     "Buttom.profile": "Perfil",
     "Cart.empty": "Seu carrinho está vazio",
     "CartButton.empty": "Buscar Produtos",
-    "Cart.total": "Preço Total: "
-
+    "Cart.total": "Preço Total: ",
+    "Payment.title": "Detalhes do Pagamento",
+    "Payment.method": "Método de Pagamento",
+    "Payment.cardNumber": "Número do Cartão",
+    "Payment.expiryDate": "Data de Expiração",
+    "Payment.cvv": "CVV",
+    "Payment.cardHolder": "Titular do Cartão",
+    "Payment.parcelas": "Parcelas",
+    "Payment.pay": "Pagar",
+    "Purchase.summary": "Resumo da Compra",
+    "Customer.address": "Endereço de Entrega",
+    "Purchase.items": "Itens",
+    "Purchase.total": "Total",
+    "Payment.creditCard": "Cartão de Crédito",
+    "Payment.pix": "Pix",
+    "Customer.phone": "Telefone",
+    "Payment.pixInstructions": "Leia o QR code abaixo para pagar com Pix:",
+    "Success.purchase": "Compra efetuada com sucesso!",
+    "PurchasePrice.customer": "Total: ",
+    "PurchaseDate.customer": "Data: "
 }

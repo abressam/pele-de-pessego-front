@@ -9,12 +9,14 @@ import { checkAdminAndRedirect } from '../../utils/checkAuth';
 const ProductStock: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
   const navigate = useNavigate();
+  
   useEffect(() => {
     checkAdminAndRedirect(navigate);
 
     ProductService.getAllProducts()
       .then(response => {
         setProducts(response.data.product);
+        
       })
       .catch(error => {
         console.error('Erro ao carregar produtos:', error);
