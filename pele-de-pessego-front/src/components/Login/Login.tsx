@@ -1,65 +1,62 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { useForm } from "react-hook-form";
 import { LoginWrapper } from './Login.styled';
 import Form from 'react-bootstrap/Form';
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'react-bootstrap';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SignInData from '../../types/SignInData';
 import SignInService from '../../services/SignInService';
 import UserFormService from '../../services/UserFormService';
-import { checkAdminAndRedirect } from '../../utils/checkAuth';
-
-interface LoginProps {}
 
 const Login: FC = () => {
+  const { register, handleSubmit, reset, watch } = useForm<SignInData>();
+  const navigate = useNavigate();
 
   const initialSignInState: SignInData = {
     email: "",
     password: ""
   };
 
-  const { register, handleSubmit, reset, watch } = useForm<SignInData>();
-  const navigate = useNavigate();
-
   const onSubmit = async (data: SignInData) => {
+    try {
+      const response = await SignInService.login(data);
+      const jwt = response.data.jwt;
+      
+      if (jwt) {
+        localStorage.setItem('jwt', jwt);
+      } else {
+        throw new Error('JWT token não está presente na resposta.');
+      }
 
-    await SignInService.login(data)
-    .then((response: any) => {
-      console.log('Usuário fez login com sucesso:', response.data);
-      // Salvando os dados no localStorage
-      localStorage.setItem('jwt', response.data.jwt);
       reset(initialSignInState);
-    })
-    .catch((error: any) => {
+
+      const userResponse = await UserFormService.getUser();
+      const userData = userResponse.data.user;
+      localStorage.setItem('isAdmin', userData.is_admin.toString());
+
+      if (userData.is_admin) {
+        sessionStorage.setItem('needsReload', 'true');
+        navigate('/productstock');
+      } else {
+        navigate('/');
+      }
+    } catch (error) {
       console.error('Erro ao iniciar sessão do usuário:', error);
-    });
-
-    await UserFormService.getUser()
-    .then((response: any) => {
-      console.log('Dados do usuário:', response.data);
-      const userData = response.data.user
-      localStorage.setItem('isAdmin', userData.is_admin);
-
-      checkAdminAndRedirect(navigate)
-    })
-
-    .catch((error: any) => {
-      console.error('Erro ao iniciar sessão do usuário:', error);
-    });  
-
+      window.confirm('Usuário/senha incorretos!');
+    }
   };
 
   const email = watch("email");
   const password = watch("password");
 
   const isFormValid = () => {
-      return email && password;
+    return email && password;
   };
 
   return (
     <LoginWrapper data-testid="Login">
-    <Form className='formLogin' id="signInForm" onSubmit={handleSubmit(onSubmit)}>
+      <Form className='formLogin' id="signInForm" onSubmit={handleSubmit(onSubmit)}>
         <Form.Group controlId="email">
           <Form.Label className='label'>
             <FormattedMessage id="UserForm.email"/>
@@ -80,7 +77,12 @@ const Login: FC = () => {
           />
         </Form.Group>
   
-        <p className='p'>Ainda não tem conta?  <Link to="/signup">Cadastre-se aqui!</Link></p>
+        <p className='p'>
+          <FormattedMessage id="Login.donothaveaccount"/>
+          <Link to="/signup">
+            <FormattedMessage id="Login.signuphere"/>
+          </Link>
+        </p>
   
         <div className='divbutton'>
           <Button 
@@ -94,7 +96,7 @@ const Login: FC = () => {
           </Button>
         </div>
       </Form>
-   </LoginWrapper>
+    </LoginWrapper>
   );
 };
 

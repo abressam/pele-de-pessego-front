@@ -2,11 +2,12 @@ import React, { FC, useEffect, useState } from 'react';
 import { ProductFormWrapper } from './ProductForm.styled';
 import { Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-import { checkAdminAndRedirect } from '../../utils/checkAuth';
 import Form from 'react-bootstrap/Form';
 import ProductData from '../../types/ProductData';
 import ProductService from '../../services/ProductService';
 import { useParams, useNavigate } from 'react-router-dom';
+import { checkClient } from '../../utils/checkClient';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 interface ProductFormProps {}
 
@@ -17,10 +18,13 @@ const ProductForm: FC = () => {
    
    const { register, handleSubmit, reset, setValue } = useForm<ProductData>();
    const [imageBase64, setImageBase64] = useState<string>("");
+   const [isUpdate, setIsUpdate] = useState(false);
 
    useEffect(() => {
-      checkAdminAndRedirect(navigate);
-      
+      checkClient(navigate)
+   }, [navigate]);
+
+   useEffect(() => {
       if (id) {
         ProductService.getProductById(Number(id))
           .then(response => {
@@ -29,6 +33,7 @@ const ProductForm: FC = () => {
               setValue(key as keyof ProductData, product[key]);
             });
             setImageBase64(product.image);
+            setIsUpdate(true);
           })
           .catch(error => {
             console.error('Erro ao carregar produto:', error);
@@ -63,6 +68,7 @@ const ProductForm: FC = () => {
              navigate("/productstock");
            })
            .catch(error => {
+            handleApiResponse(error, navigate);
              console.error('Erro ao atualizar produto:', error);
            });
        } else {
@@ -73,6 +79,7 @@ const ProductForm: FC = () => {
              navigate("/productstock");
            })
            .catch(error => {
+             handleApiResponse(error, navigate);
              console.error('Erro ao criar produto:', error);
            });
        }
@@ -91,6 +98,10 @@ const ProductForm: FC = () => {
         };
         reader.readAsDataURL(file);
       }
+    };
+
+    const handleCancel = () => {
+      navigate('/productstock');
     };
 
    return (
@@ -232,6 +243,12 @@ const ProductForm: FC = () => {
             </div>
 
             <div className='divButton'>
+               {isUpdate && (
+                  <Button variant="secondary" onClick={handleCancel}>
+                    Cancelar
+                  </Button>
+               )}
+
                <Button variant="primary" type="submit" form="productForm">
                   {id ? 'Atualizar' : 'Cadastrar'}
                </Button>

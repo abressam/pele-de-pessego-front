@@ -38,7 +38,6 @@ export default function AppRouter() {
                     <Route path='/purchase' element={<Purchase />} />
                     <Route path='/success' element={<Success />} />
                     <Route path='/dashboard' element={<Dashboard />} />
-
                 </Routes>
             </div>
         </Router>

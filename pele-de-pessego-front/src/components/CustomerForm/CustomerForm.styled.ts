@@ -49,9 +49,10 @@ export const CustomerFormWrapper = styled.div`
     }
 
     .divButton{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
         text-align: center;
-        display: block; /* Para que a propriedade text-align funcione */
-        margin: 0 auto; /* Para centralizar horizontalmente */
     }
 
     button{

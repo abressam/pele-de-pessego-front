@@ -26,11 +26,8 @@ const CustomerProfile: FC = () => {
  }, [navigate]);
 
   useEffect(() => {
-    const isAdmin = localStorage.getItem('isAdmin');
-    if (isAdmin === 'true') {
-      navigate('/productstock');
-    }
-  }, [navigate]);
+    checkAdmin(navigate)
+ }, [navigate]);
 
   useEffect(() => {
     UserFormService.getUser()
@@ -38,6 +35,7 @@ const CustomerProfile: FC = () => {
         setUser(response.data.user);
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error('Erro ao carregar os dados do usuário:', error);
       });
   }, []);

@@ -109,10 +109,11 @@ export const ProductFormWrapper = styled.div`
     }
 
     .divButton{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
         text-align: center;
-        padding-top: 30px;
-        display: block; /* Para que a propriedade text-align funcione */
-        margin: 0 auto; /* Para centralizar horizontalmente */
     }
 
     button{
