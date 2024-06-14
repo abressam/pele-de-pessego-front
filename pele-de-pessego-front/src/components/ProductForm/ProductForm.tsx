@@ -7,6 +7,7 @@ import ProductData from '../../types/ProductData';
 import ProductService from '../../services/ProductService';
 import { useParams, useNavigate } from 'react-router-dom';
 import { checkClient } from '../../utils/checkClient';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 interface ProductFormProps {}
 
@@ -65,6 +66,7 @@ const ProductForm: FC = () => {
              navigate("/productstock");
            })
            .catch(error => {
+            handleApiResponse(error, navigate);
              console.error('Erro ao atualizar produto:', error);
            });
        } else {
@@ -75,6 +77,7 @@ const ProductForm: FC = () => {
              navigate("/productstock");
            })
            .catch(error => {
+             handleApiResponse(error, navigate);
              console.error('Erro ao criar produto:', error);
            });
        }

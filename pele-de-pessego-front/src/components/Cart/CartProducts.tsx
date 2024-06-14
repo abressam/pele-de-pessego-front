@@ -11,6 +11,7 @@ import ProductData from '../../types/ProductData';
 import { checkJwt } from '../../utils/checkJwt';
 import { IoBagHandleSharp } from "react-icons/io5";
 import { checkAdmin } from '../../utils/checkAdmin';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 const CartProducts: FC = () => {
 
@@ -56,6 +57,7 @@ const CartProducts: FC = () => {
             .catch(error => console.error('Erro ao carregar detalhes dos produtos:', error));
         })
         .catch(error => {
+         handleApiResponse(error, navigate);
          if (error.response && error.response.status === 404) {
             setIsCartEmpty(true);
          } else {
@@ -83,6 +85,7 @@ const CartProducts: FC = () => {
                });
              })
              .catch(error => {
+               handleApiResponse(error, navigate);
                console.error("Erro ao excluir o produto:", error);
              });
          }

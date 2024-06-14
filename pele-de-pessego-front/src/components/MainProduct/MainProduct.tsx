@@ -10,6 +10,7 @@ import ProductService from '../../services/ProductService';
 import ProductData from '../../types/ProductData';
 import { checkAdmin } from '../../utils/checkAdmin';
 import { useNavigate } from 'react-router-dom';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 const MainProduct: FC = () => {
    const navigate = useNavigate();
@@ -30,6 +31,7 @@ const MainProduct: FC = () => {
                setProduct(response.data.product);
             })
             .catch(error => {
+               handleApiResponse(error, navigate);
                console.error('Erro ao carregar produto:', error);
             });
       }

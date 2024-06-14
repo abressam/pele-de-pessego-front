@@ -5,6 +5,7 @@ import ProductService from '../../services/ProductService';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { checkClient } from '../../utils/checkClient';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 const ProductStock: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -28,6 +29,7 @@ const ProductStock: FC = () => {
         setProducts(response.data.product);
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error('Erro ao carregar produtos:', error);
       });
   }, []);
@@ -44,6 +46,7 @@ const ProductStock: FC = () => {
         setProducts(prevProducts => prevProducts.filter(product => product.id !== id))
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error("Erro ao excluir o produto:", error);
       });
     }

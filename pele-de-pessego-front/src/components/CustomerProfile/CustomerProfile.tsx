@@ -8,6 +8,7 @@ import UserFormService from '../../services/UserFormService';
 import CustomerService from '../../services/CustomerService';
 import CustomerData from '../../types/CustomerData';
 import { checkAdmin } from '../../utils/checkAdmin';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 interface CustomerProfile {}
 
@@ -28,6 +29,7 @@ const CustomerProfile: FC = () => {
         setUser(response.data.user);
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error('Erro ao carregar os dados do usuário:', error);
       });
   }, []);
@@ -43,6 +45,7 @@ const CustomerProfile: FC = () => {
         }
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error('Erro ao carregar os dados do cliente:', error);
       });
   }, []);
@@ -61,6 +64,7 @@ const CustomerProfile: FC = () => {
           navigate(`/`);
         })
         .catch(error => {
+          handleApiResponse(error, navigate);
           console.error("Erro ao excluir o usuário:", error);
         });
     }
@@ -87,6 +91,7 @@ const CustomerProfile: FC = () => {
           setCustomer(response.data.customer)
         })
         .catch(error => {
+          handleApiResponse(error, navigate);
           console.error("Erro ao excluir usuário cliente:", error);
         });
     }
