@@ -38,7 +38,7 @@ const NavbarAdmin: FC<NavbarAdminProps> = () => {
            </NavBrand>
            <Link to="/login">
            <Button className="button-nav-login" type="button" onClick={logout}>
-             <FormattedMessage id="UserFormButton.exit" />
+             Sair
            </Button>
          </Link>
          </NavbarContainer>
