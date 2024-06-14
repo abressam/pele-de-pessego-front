@@ -56,5 +56,15 @@
     "Payment.pixInstructions": "Leia o QR code abaixo para pagar com Pix:",
     "Success.purchase": "Compra efetuada com sucesso!",
     "PurchasePrice.customer": "Total: ",
-    "PurchaseDate.customer": "Data: "
+    "PurchaseDate.customer": "Data: ",
+    "Login.signuphere": "  Cadastre-se aqui!",
+    "Login.donothaveaccount": "Ainda não tem uma conta?",
+    "SignUp.haveaccountlink": "  Faça seu login aqui!",
+    "SignUp.haveaccount": "Já tem uma conta?",
+    "CategoryBar.all": "TODOS",
+    "CategoryBar.perfumary": "PERFUMARIA",
+    "CategoryBar.makeup": "MAQUIAGEM",
+    "CategoryBar.bodyandbath": "CORPO E BANHO",
+    "CategoryBar.hair": "CABELO",
+    "CategoryBar.skincare": "CUIDADOS COM A PELE"
 }

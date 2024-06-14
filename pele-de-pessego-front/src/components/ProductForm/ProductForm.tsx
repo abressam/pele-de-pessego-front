@@ -19,7 +19,7 @@ const ProductForm: FC = () => {
    const [imageBase64, setImageBase64] = useState<string>("");
 
    useEffect(() => {
-      //checkAdminAndRedirect(navigate);
+      checkAdminAndRedirect(navigate);
       
       if (id) {
         ProductService.getProductById(Number(id))

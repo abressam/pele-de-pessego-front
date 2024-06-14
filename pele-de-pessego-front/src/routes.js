@@ -13,6 +13,7 @@ import CartProducts from './components/Cart/CartProducts';
 import CustomerProfile from './components/CustomerProfile/CustomerProfile';
 import Purchase from './components/Purchase/Purchase';
 import Success from './components/Success/Success';
+import Dashboard from './components/Dashboard/Dashboard';
 
 export default function AppRouter() {
 
@@ -36,6 +37,7 @@ export default function AppRouter() {
                     <Route path='/customerprofile' element={<CustomerProfile />} />
                     <Route path='/purchase' element={<Purchase />} />
                     <Route path='/success' element={<Success />} />
+                    <Route path='/dashboard' element={<Dashboard />} />
 
                 </Routes>
             </div>

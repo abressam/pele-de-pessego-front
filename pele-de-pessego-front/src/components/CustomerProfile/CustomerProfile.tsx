@@ -8,6 +8,8 @@ import UserFormService from '../../services/UserFormService';
 import CustomerService from '../../services/CustomerService';
 import CustomerData from '../../types/CustomerData';
 import PurchaseService from '../../services/PurchaseService';
+import { checkAdmin } from '../../utils/checkAdmin';
+import { handleApiResponse } from '../../utils/checkInvalidSession';
 
 interface CustomerProfile { }
 
@@ -18,6 +20,10 @@ const CustomerProfile: FC = () => {
   const [customer, setCustomer] = useState<CustomerData | null>(null);
   const [showButton, setShowButton] = useState(true);
   const [purchases, setPurchases] = useState<any[]>([]);
+
+  useEffect(() => {
+    checkAdmin(navigate)
+ }, [navigate]);
 
   useEffect(() => {
     const isAdmin = localStorage.getItem('isAdmin');
@@ -47,6 +53,7 @@ const CustomerProfile: FC = () => {
         }
       })
       .catch(error => {
+        handleApiResponse(error, navigate);
         console.error('Erro ao carregar os dados do cliente:', error);
       });
   }, []);
@@ -77,6 +84,7 @@ const CustomerProfile: FC = () => {
           navigate(`/`);
         })
         .catch(error => {
+          handleApiResponse(error, navigate);
           console.error("Erro ao excluir o usuário:", error);
         });
     }
@@ -103,6 +111,7 @@ const CustomerProfile: FC = () => {
           setCustomer(response.data.customer)
         })
         .catch(error => {
+          handleApiResponse(error, navigate);
           console.error("Erro ao excluir usuário cliente:", error);
         });
     }

@@ -9,6 +9,14 @@ import { checkAdminAndRedirect } from '../../utils/checkAuth';
 const ProductStock: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const needsReload = sessionStorage.getItem('needsReload');
+    if (needsReload === 'true') {
+      sessionStorage.removeItem('needsReload');
+      window.location.reload();
+    }
+  }, []);
   
   useEffect(() => {
     checkAdminAndRedirect(navigate);
