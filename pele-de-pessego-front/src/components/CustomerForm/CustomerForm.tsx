@@ -7,6 +7,7 @@ import CustomerData from '../../types/CustomerData';
 import CustomerService from '../../services/CustomerService';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { checkAdmin } from '../../utils/checkAdmin';
 
 const CustomerForm: FC = () => {
    const navigate = useNavigate();
@@ -15,12 +16,8 @@ const CustomerForm: FC = () => {
    const { register, handleSubmit, setValue, setFocus, reset, watch } = useForm<CustomerData>();
 
    useEffect(() => {
-      const isAdmin = localStorage.getItem('isAdmin');
-      if (isAdmin === 'true') {
-        navigate('/productstock');
-      }
-    }, [navigate]);
-
+      checkAdmin(navigate)
+   }, [navigate]);
     
   useEffect(() => {
       if (location.state) {

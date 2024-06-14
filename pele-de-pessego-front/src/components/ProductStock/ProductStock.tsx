@@ -4,14 +4,25 @@ import Card from 'react-bootstrap/Card';
 import ProductService from '../../services/ProductService';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
-import { checkAdminAndRedirect } from '../../utils/checkAuth';
+import { checkClient } from '../../utils/checkClient';
 
 const ProductStock: FC = () => {
   const [products, setProducts] = useState<any[]>([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    checkAdminAndRedirect(navigate);
 
+  useEffect(() => {
+    const needsReload = sessionStorage.getItem('needsReload');
+    if (needsReload === 'true') {
+      sessionStorage.removeItem('needsReload');
+      window.location.reload();
+    }
+  }, []);
+
+  useEffect(() => {
+    checkClient(navigate)
+ }, [navigate]);
+
+  useEffect(() => {
     ProductService.getAllProducts()
       .then(response => {
         setProducts(response.data.product);

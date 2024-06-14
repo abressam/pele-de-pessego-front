@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import UserFormService from '../../services/UserFormService';
 import CustomerService from '../../services/CustomerService';
 import CustomerData from '../../types/CustomerData';
+import { checkAdmin } from '../../utils/checkAdmin';
 
 interface CustomerProfile {}
 
@@ -14,11 +15,8 @@ const CustomerProfile: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isAdmin = localStorage.getItem('isAdmin');
-    if (isAdmin === 'true') {
-      navigate('/productstock');
-    }
-  }, [navigate]);
+    checkAdmin(navigate)
+ }, [navigate]);
 
   const [user, setUser] = useState<{ name: string, email: string, is_admin: boolean } | null>(null);
   const [customer, setCustomer] = useState<CustomerData | null>(null);

@@ -8,13 +8,20 @@ import ProductImage from '../ProductImage/ProductImage';
 import { MainProductWrapper } from './MainProduct.styled';
 import ProductService from '../../services/ProductService';
 import ProductData from '../../types/ProductData';
+import { checkAdmin } from '../../utils/checkAdmin';
+import { useNavigate } from 'react-router-dom';
 
 const MainProduct: FC = () => {
+   const navigate = useNavigate();
 
    const { id, quantity } = useParams<{ id: string, quantity?: string }>(); // Obtém o ID e a quantidade do produto da URL
    const [count, setCount] = useState(1);
    const [product, setProduct] = useState<ProductData>();
    const [finalPrice, setFinalPrice] = useState(0);
+
+   useEffect(() => {
+      checkAdmin(navigate)
+   }, [navigate]);
 
    useEffect(() => {
       if (id) {

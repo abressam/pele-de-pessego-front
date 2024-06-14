@@ -10,6 +10,7 @@ import CartData from '../../types/CartData';
 import ProductData from '../../types/ProductData';
 import { checkJwt } from '../../utils/checkJwt';
 import { IoBagHandleSharp } from "react-icons/io5";
+import { checkAdmin } from '../../utils/checkAdmin';
 
 const CartProducts: FC = () => {
 
@@ -25,10 +26,7 @@ const CartProducts: FC = () => {
    }, [navigate]);
 
    useEffect(() => {
-      const isAdmin = localStorage.getItem('isAdmin');
-      if (isAdmin === 'true') {
-          navigate('/productstock');
-      }
+      checkAdmin(navigate)
    }, [navigate]);
 
    useEffect(() => {
@@ -41,7 +39,6 @@ const CartProducts: FC = () => {
             return;
          }
     
-         // Fetch product details for each item in the cart
          const productDetailsPromises = cartItems.map(item =>
             ProductService.getProductById(item.productId)
               .then(productResponse => ({
@@ -50,7 +47,6 @@ const CartProducts: FC = () => {
               }))
          );
     
-         // Update state with product details
          Promise.all(productDetailsPromises)
             .then(products => {
                setProducts(products);

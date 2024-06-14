@@ -2,11 +2,11 @@ import React, { FC, useEffect, useState } from 'react';
 import { ProductFormWrapper } from './ProductForm.styled';
 import { Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-import { checkAdminAndRedirect } from '../../utils/checkAuth';
 import Form from 'react-bootstrap/Form';
 import ProductData from '../../types/ProductData';
 import ProductService from '../../services/ProductService';
 import { useParams, useNavigate } from 'react-router-dom';
+import { checkClient } from '../../utils/checkClient';
 
 interface ProductFormProps {}
 
@@ -19,8 +19,10 @@ const ProductForm: FC = () => {
    const [imageBase64, setImageBase64] = useState<string>("");
 
    useEffect(() => {
-      checkAdminAndRedirect(navigate);
-      
+      checkClient(navigate)
+   }, [navigate]);
+
+   useEffect(() => {
       if (id) {
         ProductService.getProductById(Number(id))
           .then(response => {

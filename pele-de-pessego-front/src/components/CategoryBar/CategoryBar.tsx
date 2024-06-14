@@ -2,15 +2,15 @@ import React, { FC, useEffect } from 'react';
 import { CategoryBarWrapper, CategoryLink, ImageBody } from './CategoryBar.styled';
 import headerImage from './../../assets/headerImage.svg';
 import ProductCard from '../ProductCard/ProductCard';
-import {useNavigate} from 'react-router-dom';
-import { checkAdminAndRedirect } from '../../utils/checkAuth';
+import { useNavigate } from 'react-router-dom';
+import { checkAdmin } from '../../utils/checkAdmin';
 
 const CategoryBar: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkAdminAndRedirect(navigate);
-  }, [navigate]);
+    checkAdmin(navigate)
+ }, [navigate]);
 
   return(
     <div>
