@@ -2,9 +2,10 @@ import httpProduct from "../common/http-product";
 import ProductData from "../types/ProductData";
 import { setAuthorizationHeader } from "./AuthHeader";
 
-const getAllProducts = () => {
+const getAllProducts = (type?: string) => {
     setAuthorizationHeader(httpProduct)
-    return httpProduct.get("/product/info");
+    const url = type ? `/product/info?type=${type}` : '/product/info';
+    return httpProduct.get(url);
 };
 
 const getProductById = (id: number) => {

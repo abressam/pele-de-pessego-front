@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom';
 import CartService from '../../services/CartService';
 import CartData from '../../types/CartData';
 
-const ProductCard: FC = () => {
+interface ProductCardProps {
+   selectedType: string | null;
+ }
+
+const ProductCard: FC<ProductCardProps> = ({ selectedType }) => {
 
    const userLanguage = localStorage.getItem('language')
    const [products, setProducts] = useState<any[]>([]);
@@ -23,14 +27,14 @@ const ProductCard: FC = () => {
    }, []);
 
    useEffect(() => {
-      ProductService.getAllProducts()
+      ProductService.getAllProducts(selectedType || undefined)
         .then(response => {
           setProducts(response.data.product);
         })
         .catch(error => {
           console.error('Erro ao carregar produtos:', error);
         });
-   }, []);
+    }, [selectedType]);
 
    const isInCart = (productId: number) => {
       return cartProducts.some(item => item.productId === productId);

@@ -28,6 +28,7 @@ export const CategoryLink = styled.a`
   &:not(:last-child) {
     margin-right: 64px; /* Add margin to all links except the last one */
   }
+  cursor: pointer;
 `;
 
 export const ImageBody = styled.div`
